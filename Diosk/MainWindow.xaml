@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button Width="100" Height="100" Click="Button_Click"></Button>
+        <local:Statistic x:Name="navi" Visibility="Collapsed"/>
     </Grid>
 </Window>

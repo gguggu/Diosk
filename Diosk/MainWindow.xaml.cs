@@ -33,5 +33,10 @@ namespace Diosk
         {
             menu.Load();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            navi.Visibility = Visibility.Visible;
+        }
     }
 }
