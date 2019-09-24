@@ -11,38 +11,60 @@
              >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="#ffea00">
-            <Image Height="50" HorizontalAlignment="Left" Source="Assets/logo.png" Margin="100, 0, 0, 0"/>
+            <Image Height="40" HorizontalAlignment="Left" Source="Assets/logo.png" Margin="100,20,0,0"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Grid Width="600" Height="50" Panel.ZIndex="99" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50, 50, 0, 0">
-                <TextBlock Text="하루 매출액: 5000" FontSize="35" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#ffffff" FontFamily="NanumSquare"/>
-            </Grid>
-            <Grid Background="#323232" Panel.ZIndex="98">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <lvc:CartesianChart Grid.Column="0" Series="{Binding SeriesCollection}" LegendLocation="Left" Width="550" Height="450" VerticalAlignment="Bottom" Margin="0, 0, 0, 150">
-                    <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="MENU" Labels="{Binding Labels}"/>
-                    </lvc:CartesianChart.AxisX>
-                    <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="수치" LabelFormatter="{Binding Formatter}"/>
-                    </lvc:CartesianChart.AxisY>
-                </lvc:CartesianChart>
-                <lvc:CartesianChart Grid.Column="1" Series="{Binding SeriesCollectionSec}" LegendLocation="Left" Width="550" Height="450" VerticalAlignment="Bottom" Margin="0, 0, 0, 150">
-                    <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="CATEGORY" Labels="{Binding LabelsSec}"/>
-                    </lvc:CartesianChart.AxisX>
-                    <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="수치" LabelFormatter="{Binding FormatterSec}"/>
-                    </lvc:CartesianChart.AxisY>
-                </lvc:CartesianChart>
-            </Grid>
+            <ScrollViewer>
+                <Grid>
+                    <Grid Width="600" Height="50" Panel.ZIndex="99" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="325,50,0,0">
+                        <TextBlock Text="{Binding allMoney}" x:Name="moneyBox" FontSize="35" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#212121" FontFamily="NanumSquare"/>
+                    </Grid>
+                    <Grid Panel.ZIndex="98">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Width="500" HorizontalAlignment="Center" Background="#fafafa" BorderThickness="1" CornerRadius="25" Margin="46,200,46,275">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
+                            </Border.Effect>
+                            <lvc:PieChart Grid.Column="0" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
+                                <lvc:PieChart.Series>
+                                    <lvc:PieSeries Title="Maria" Values="3" DataLabels="True"
+                                                LabelPoint="{Binding PointLabel}"/>
+                                    <lvc:PieSeries Title="Charles" Values="4" DataLabels="True" 
+                                                LabelPoint="{Binding PointLabel}"/>
+                                    <lvc:PieSeries Title="Frida" Values="6" DataLabels="True" 
+                                                LabelPoint="{Binding PointLabel}"/>
+                                    <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True" 
+                                                LabelPoint="{Binding PointLabel}"/>
+                                </lvc:PieChart.Series>
+                            </lvc:PieChart>
+                        </Border>
+                        <Border Width="500" Height="400" Background="#fafafa" BorderThickness="1" CornerRadius="25" Margin="46,630,46,-130" >
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
+                            </Border.Effect>
+                            <lvc:PieChart Grid.Column="1" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
+                                <lvc:PieChart.Series>
+                                    <lvc:PieSeries Title="Maria" Values="3" DataLabels="True"
+                                                LabelPoint="{Binding PointLabel}"/>
+                                    <lvc:PieSeries Title="Charles" Values="4" DataLabels="True" 
+                                                LabelPoint="{Binding PointLabel}"/>
+                                    <lvc:PieSeries Title="Frida" Values="6" DataLabels="True" 
+                                                LabelPoint="{Binding PointLabel}"/>
+                                    <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True" 
+                                                LabelPoint="{Binding PointLabel}"/>
+                                </lvc:PieChart.Series>
+                            </lvc:PieChart>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

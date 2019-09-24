@@ -62,7 +62,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomControl1.cs" />
-    <Compile Include="Model\Statistic.cs" />
+    <Compile Include="Model\TotalData.cs" />
     <Compile Include="Statistic.xaml.cs">
       <DependentUpon>Statistic.xaml</DependentUpon>
     </Compile>

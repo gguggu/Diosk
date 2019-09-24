@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
+using Diosk.Model;
 
 namespace Diosk
 {
@@ -22,45 +23,53 @@ namespace Diosk
     /// </summary>
     public partial class Statistic : UserControl
     {
+        public TotalData totalData = new TotalData();
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
         public SeriesCollection SeriesCollectionSec { get; set; }
         public string[] LabelsSec { get; set; }
         public Func<double, string> FormatterSec { get; set; }
+
+        public Func<ChartPoint, string> PointLabel { get; set; }
+
+
+
         public Statistic()
         {
             InitializeComponent();
             setMenuChart();
-            setCategoryChart();
+            //setCategoryChart();
+            gettingPractice();
+        }
+
+        public void gettingPractice()
+        {
+            App.totalData.LoadData();
+            moneyBox.Text = "총 매출액: " + App.totalData.allMoney.ToString() + "원";
+        }
+
+        public void Chart_OnDataClick(object sender, ChartPoint chartpoint)
+        {
+            var chart = (LiveCharts.Wpf.PieChart)chartpoint.ChartView;
+
+            //clear selected slice.
+            foreach (PieSeries series in chart.Series)
+                series.PushOut = 0;
+
+            var selectedSeries = (PieSeries)chartpoint.SeriesView;
+            selectedSeries.PushOut = 8;
         }
 
         public void setMenuChart()
         {
-            SeriesCollection = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                    Title = "매출액",
-                    Values = new ChartValues<double> { 10, 50, 39, 50 }
-                }
-            };
-
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = "판매량",
-                Values = new ChartValues<double> { 11, 56, 42 }
-            });
-
-            SeriesCollection[1].Values.Add(48d);
-
-            Labels = new[] { "흑당 그린티 라떼", "흑당 밀크티", "흑당 카페라떼", "코코넛 카페라떼" };
-            Formatter = value => value.ToString("N");
+            PointLabel = chartPoint =>
+               string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 
             DataContext = this;
         }
 
-        public void setCategoryChart()
+        /*public void setCategoryChart()
         {
             SeriesCollectionSec = new SeriesCollection
             {
@@ -83,7 +92,7 @@ namespace Diosk
             FormatterSec = value => value.ToString("N");
 
             DataContext = this;
-        }
+        }*/
 
         
     }
