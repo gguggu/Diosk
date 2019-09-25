@@ -49,8 +49,7 @@ namespace Diosk
             // as is 시험
             Diosk.Model.Food food = (lvFood.SelectedItem as Diosk.Model.Food);
 
-            //orderlist.
-         
+            // List<FO
 
             //String name = food.Name;
             //int price = food.Price;
@@ -63,7 +62,7 @@ namespace Diosk
         private void BtnMinus_Click(object sender, RoutedEventArgs e)
         {
             Diosk.Model.Food food = (lvFood.SelectedItem as Diosk.Model.Food);
-            //food.Count--;
+            food.Count--;   
         }
 
         private void Coffee_Click(object sender, RoutedEventArgs e)

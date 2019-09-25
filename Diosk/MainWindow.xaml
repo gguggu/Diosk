@@ -8,7 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Width="100" Height="100" Click="Button_Click"></Button>
-        <!--<local:Statistic x:Name="navi" Visibility="Collapsed"/>-->
+        <local:Statistic x:Name="navi" Visibility="Collapsed"/>
+
         <Button Width="100" Height="50" Click="Order_Click" VerticalAlignment="Bottom"
                 HorizontalAlignment="Left" Margin="10" Content="주문"></Button>
     </Grid>
