@@ -36,7 +36,7 @@ namespace Diosk
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            navi.Visibility = Visibility.Visible;
+            //navi.Visibility = Visibility.Visible;
         }
 
         private void Order_Click(object sender, RoutedEventArgs e)
