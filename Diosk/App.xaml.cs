@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Diosk.Model;
 
 namespace Diosk
 {
@@ -13,5 +14,6 @@ namespace Diosk
     /// </summary>
     public partial class App : Application
     {
+        public static TotalData totalData = new TotalData();
     }
 }

@@ -13,6 +13,6 @@ namespace Diosk.Model
         public int Price { get; set; }
         public eCategory Category { get; set; }
         public int Count { get; set; }
-        public string Payment { get; set; }
+        public string ImagePath { get; set; }
     }
 }
