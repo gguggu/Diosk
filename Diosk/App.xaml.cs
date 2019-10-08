@@ -14,6 +14,5 @@ namespace Diosk
     /// </summary>
     public partial class App : Application
     {
-        public static TotalData totalData = new TotalData();
     }
 }

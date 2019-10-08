@@ -63,6 +63,9 @@
     </ApplicationDefinition>
     <Compile Include="CustomControl1.cs" />
     <Compile Include="Model\TotalData.cs" />
+    <Compile Include="Order.xaml.cs">
+      <DependentUpon>Order.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Statistic.xaml.cs">
       <DependentUpon>Statistic.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Order.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Statistic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +123,22 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Coffee\menu01_img1.png" />
+    <Resource Include="Assets\Coffee\menu01_img2.png" />
+    <Resource Include="Assets\Coffee\menu01_img3.png" />
+    <Resource Include="Assets\Coffee\menu01_img4.png" />
+    <Resource Include="Assets\Coffee\menu01_img6.png" />
+    <Resource Include="Assets\Latte\menu02_img1.png" />
+    <Resource Include="Assets\Latte\menu02_img2.png" />
+    <Resource Include="Assets\Latte\menu02_img3.png" />
+    <Resource Include="Assets\Latte\menu02_img4.png" />
+    <Resource Include="Assets\Latte\menu02_img5.png" />
+    <Resource Include="Assets\Latte\menu02_img6.png" />
+    <Resource Include="Assets\Latte\menu02_img7.png" />
+    <Resource Include="Assets\Latte\menu08_img01.png" />
+    <Resource Include="Assets\Latte\menu08_img02.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

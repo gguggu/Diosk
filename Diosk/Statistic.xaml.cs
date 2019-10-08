@@ -24,36 +24,27 @@ namespace Diosk
     public partial class Statistic : UserControl
     {
         public TotalData totalData = new TotalData();
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
-        public SeriesCollection SeriesCollectionSec { get; set; }
-        public string[] LabelsSec { get; set; }
-        public Func<double, string> FormatterSec { get; set; }
-
-        public Func<ChartPoint, string> PointLabel { get; set; }
-
-
+        //public Func<ChartPoint, string> PointLabel { get; set; }
+        public string PointName { get; set; }
 
         public Statistic()
         {
             InitializeComponent();
+            totalData.AddSlice();
             setMenuChart();
-            //setCategoryChart();
             gettingPractice();
         }
 
         public void gettingPractice()
         {
-            App.totalData.LoadData();
-            moneyBox.Text = "총 매출액: " + App.totalData.allMoney.ToString() + "원";
+            totalData.LoadMoney();
+            moneyBox.Text = "Total: " + totalData.allMoney.ToString() + "원";
         }
 
         public void Chart_OnDataClick(object sender, ChartPoint chartpoint)
         {
-            var chart = (LiveCharts.Wpf.PieChart)chartpoint.ChartView;
+            var chart = (PieChart)chartpoint.ChartView;
 
-            //clear selected slice.
             foreach (PieSeries series in chart.Series)
                 series.PushOut = 0;
 
@@ -63,37 +54,19 @@ namespace Diosk
 
         public void setMenuChart()
         {
-            PointLabel = chartPoint =>
-               string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
-
-            DataContext = this;
-        }
-
-        /*public void setCategoryChart()
-        {
-            SeriesCollectionSec = new SeriesCollection
+            Func<ChartPoint, string> labelPoint = chartPoint =>
+            string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+            MenuPie.Series = new SeriesCollection();
+            foreach (var se in totalData.Slice)
             {
-                new ColumnSeries
+                MenuPie.Series.Add(new PieSeries
                 {
-                    Title = "매출액",
-                    Values = new ChartValues<double> { 10, 50, 39, 50 }
-                }
-            };
-
-            SeriesCollectionSec.Add(new ColumnSeries
-            {
-                Title = "판매량",
-                Values = new ChartValues<double> { 11, 56, 42 }
-            });
-
-            SeriesCollectionSec[1].Values.Add(48d);
-
-            LabelsSec = new[] { "COFFEE", "LATTE", "SMOOTHIE", "ADE" };
-            FormatterSec = value => value.ToString("N");
-
-            DataContext = this;
-        }*/
-
-        
+                    Title = se.Key,
+                    Values = new ChartValues<double> { se.Value },
+                    DataLabels = true,
+                    LabelPoint = labelPoint
+                });
+            }
+        }
     }
 }
