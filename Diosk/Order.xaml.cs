@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diosk.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace Diosk
     /// </summary>
     public partial class Order : Window
     {
+        int resultPrice = 0;
+
         Diosk.Model.Menu menu = new Diosk.Model.Menu();
         public Order()
         {
@@ -31,7 +34,9 @@ namespace Diosk
         {
             menu.Load();
 
-            lvFood.ItemsSource = menu.Coffee;
+            lvFood.ItemsSource = menu.All;
+
+            totalPrice.Text = resultPrice.ToString("전체 금액 : " + resultPrice);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -49,20 +54,14 @@ namespace Diosk
             // as is 시험
             Diosk.Model.Food food = (lvFood.SelectedItem as Diosk.Model.Food);
 
-            // List<FO
+            if (lvFood.SelectedItem != null)
+            {
+                orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
 
-            //String name = food.Name;
-            //int price = food.Price;
-            //int count = food.count;
+                resultPrice += food.Price;
 
-            //items.Add(new Food { Name = name, Price = price, count = count });
-            //orderlist.ItemsSource = items;
-        }
-
-        private void BtnMinus_Click(object sender, RoutedEventArgs e)
-        {
-            Diosk.Model.Food food = (lvFood.SelectedItem as Diosk.Model.Food);
-            food.Count--;   
+                totalPrice.Text = resultPrice.ToString("전체 금액 : " + resultPrice);
+            }   
         }
 
         private void Coffee_Click(object sender, RoutedEventArgs e)
@@ -77,7 +76,74 @@ namespace Diosk
 
         private void Smoothie_Click(object sender, RoutedEventArgs e)
         {
+            lvFood.ItemsSource = menu.Smoothie;
+        }
 
+        private void Ade_Click(object sender, RoutedEventArgs e)
+        {
+            lvFood.ItemsSource = menu.Ade;
+        }
+
+        private void Tea_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void All_Click(object sender, RoutedEventArgs e)
+        {
+            lvFood.ItemsSource = menu.All;
+        }
+
+        private void AllCancel_Click(object sender, RoutedEventArgs e)
+        {
+            orderlist.Items.Clear();
+
+            resultPrice = 0;
+            totalPrice.Text = resultPrice.ToString("전체 금액 : " + resultPrice);
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Food order = (orderlist.SelectedItem as Food);
+
+            if(orderlist.SelectedItem != null)
+            {
+                orderlist.Items.Remove(order);
+
+                resultPrice -= order.Price;
+                totalPrice.Text = resultPrice.ToString("전체 금액 : " + resultPrice);
+            }            
+        }
+
+        private void Orderlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Plus_Click(object sender, RoutedEventArgs e)
+        {
+            Food order = (orderlist.SelectedItem as Food);
+
+            if(orderlist.SelectedItem != null)
+            {
+                order.Count++;
+
+                resultPrice += order.Price;
+                totalPrice.Text = resultPrice.ToString("전체 금액 : " + resultPrice);
+            }
+        }
+
+        private void Minus_Click(object sender, RoutedEventArgs e)
+        {
+            Food order = (orderlist.SelectedItem as Food);
+
+            if (orderlist.SelectedItem != null)
+            {
+                order.Count--;
+
+                resultPrice -= order.Price;
+                totalPrice.Text = resultPrice.ToString("전체 금액 : " + resultPrice);
+            }
         }
     }
 }
