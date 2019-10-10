@@ -60,5 +60,11 @@ namespace Diosk
                 OnComplete(this, args);
             }
         }
+
+        private void Order_Click(object sender, RoutedEventArgs e)
+        {
+            Window orderPage = new Order();
+            orderPage.Show();
+        }
     }
 }
