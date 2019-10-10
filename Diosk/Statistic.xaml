@@ -41,34 +41,14 @@
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="MenuPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}" >
-                                        <!--<lvc:PieChart.Series>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="5" DataLabels="True"
-                                                        LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="3" DataLabels="True" 
-                                                        LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="1" DataLabels="True" 
-                                                        LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="9" DataLabels="True" 
-                                                        LabelPoint="{Binding PointLabel}"/>
-                                        </lvc:PieChart.Series>-->
+                                    <lvc:PieChart x:Name="MenuCountPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}" >
                                     </lvc:PieChart>
                                 </Border>
                                 <Border Width="450" Height="350" Background="#fafafa" BorderThickness="1" CornerRadius="25" Margin="0, 500, 0, 0" >
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="SubMenuPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
-                                        <!--<lvc:PieChart.Series>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="3" DataLabels="True"/>
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="4" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="6" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="2" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                        </lvc:PieChart.Series> -->
+                                    <lvc:PieChart x:Name="MenuMoneyPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
                                     </lvc:PieChart>
                                 </Border>
                             </Grid>
@@ -80,36 +60,14 @@
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="CategoryPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
-                                        <!--<lvc:PieChart.Series>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="10" DataLabels="True"/>
-                                            LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="7" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="2" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="1" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                        </lvc:PieChart.Series>-->
+                                    <lvc:PieChart x:Name="CategoryCountPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
                                     </lvc:PieChart>
                                 </Border>
                                 <Border Width="450" Height="350" Background="#fafafa" BorderThickness="1" CornerRadius="25" Margin="0, 500, 0, 0" >
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="SubCategoryPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
-                                        <!--<lvc:PieChart.Series>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="3" DataLabels="True"/>
-                                            LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="4" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>-
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="6" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="2" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                            <lvc:PieSeries Title="{Binding PointName}" Values="2" DataLabels="True" />
-                                            <LabelPoint="{Binding PointLabel}"/>
-                                        </lvc:PieChart.Series>-->
+                                    <lvc:PieChart x:Name="CategoryMoneyPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
                                     </lvc:PieChart>
                                 </Border>
                             </Grid>
