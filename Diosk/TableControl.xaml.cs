@@ -13,12 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Diosk.Model;
 
 namespace Diosk
 {
     public class OrderEventArgs : EventArgs
     {
         public int id;
+        public List<Food> orderList;
     }
     /// <summary>
     /// Interaction logic for TableControl.xaml
