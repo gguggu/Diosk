@@ -23,6 +23,7 @@ namespace Diosk
     public partial class MainWindow : Window
     {
         Diosk.Model.Menu menu = new Diosk.Model.Menu();
+        public string navName = "통계";
         public MainWindow()
         {
             InitializeComponent();
@@ -35,9 +36,19 @@ namespace Diosk
             menu.Load();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Statistic_Click(object sender, RoutedEventArgs e)
         {
-            //navi.Visibility = Visibility.Visible;
+            if(navi.Visibility == Visibility.Collapsed)
+            {
+                navi.Visibility = Visibility.Visible;
+                navName = "메인";
+                navBox.Text = navName;
+            } else if(navi.Visibility == Visibility.Visible)
+            {
+                navi.Visibility = Visibility.Collapsed;
+                navName = "통계";
+                navBox.Text = navName;
+            }
         }
 
         private void Order_Click(object sender, RoutedEventArgs e)

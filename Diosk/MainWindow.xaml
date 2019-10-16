@@ -10,5 +10,9 @@
         <local:TableControl x:Name="tableCtrl" Visibility="Visible" Background="Black"/>
         <local:LoadingWindow x:Name="loadingCtrl" Visibility="Collapsed" 
                              Height="450" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <local:Statistic x:Name="navi" Visibility="Collapsed"/>
+        <Button Width="50" Height="50" Background="Gold" Click="Statistic_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 20, 20, 0">
+            <TextBlock Text="통계" Name="navBox"/>
+        </Button>
     </Grid>
 </Window>
