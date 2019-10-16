@@ -24,20 +24,13 @@ namespace Diosk
     public partial class Statistic : UserControl
     {
         public TotalData totalData = new TotalData();
-        public string PointName { get; set; }
-
         public Statistic()
         {
             InitializeComponent();
-            totalData.AddSlice();
-            setChart();
-            gettingPractice();
-        }
-
-        public void gettingPractice()
-        {
             totalData.LoadMoney();
-            moneyBox.Text = "Total: " + totalData.allMoney.ToString() + "원";
+            totalData.AddSlice();
+            this.DataContext = totalData;
+            setChart();
         }
 
         public void Chart_OnDataClick(object sender, ChartPoint chartpoint)
@@ -51,7 +44,6 @@ namespace Diosk
             selectedSeries.PushOut = 8;
         }
 
-
         public void setChart()
         {
             PieChart[] pies = new PieChart[] { MenuCountPie, MenuMoneyPie, CategoryCountPie, CategoryMoneyPie };
@@ -63,65 +55,23 @@ namespace Diosk
             {
                 if(pie == MenuCountPie)
                 {
-                    addMenuCountSeries(pie, labelPoint);
+                    AddSeries(pie, labelPoint, totalData.MenuCountSlice);
                 } else if(pie == MenuMoneyPie)
                 {
-                    addMenuMoneySeries(pie, labelPoint);
+                    AddSeries(pie, labelPoint, totalData.MenuMoneySlice);
                 } else if(pie == CategoryCountPie)
                 {
-                    addCategoryCountSeries(pie, labelPoint);
+                    AddSeries(pie, labelPoint, totalData.CategoryCountSlice);
                 } else if(pie == CategoryMoneyPie)
                 {
-                    addCategoryMoneySeries(pie, labelPoint);
+                    AddSeries(pie, labelPoint, totalData.CategoryMoneySlice);
                 }
             }
         }
 
-        public void addMenuCountSeries(PieChart pie, Func<ChartPoint, string> labelPoint)
+        public void AddSeries(PieChart pie, Func<ChartPoint, string> labelPoint, Dictionary<string, double> pieDictionary)
         {
-            foreach (var slice in totalData.MenuCountSlice)
-            {
-                pie.Series.Add(new PieSeries
-                {
-                    Title = slice.Key,
-                    Values = new ChartValues<double> { slice.Value },
-                    DataLabels = true,
-                    LabelPoint = labelPoint
-                });
-            }
-        }
-
-        public void addMenuMoneySeries(PieChart pie, Func<ChartPoint, string> labelPoint)
-        {
-            foreach (var slice in totalData.MenuMoneySlice)
-            {
-                pie.Series.Add(new PieSeries
-                {
-                    Title = slice.Key,
-                    Values = new ChartValues<double> { slice.Value },
-                    DataLabels = true,
-                    LabelPoint = labelPoint
-                });
-            }
-        }
-
-        public void addCategoryCountSeries(PieChart pie, Func<ChartPoint, string> labelPoint)
-        {
-            foreach (var slice in totalData.CategoryCountSlice)
-            {
-                pie.Series.Add(new PieSeries
-                {
-                    Title = slice.Key,
-                    Values = new ChartValues<double> { slice.Value },
-                    DataLabels = true,
-                    LabelPoint = labelPoint
-                });
-            }
-        }
-
-        public void addCategoryMoneySeries(PieChart pie, Func<ChartPoint, string> labelPoint)
-        {
-            foreach (var slice in totalData.CategoryMoneySlice)
+            foreach (var slice in pieDictionary)
             {
                 pie.Series.Add(new PieSeries
                 {

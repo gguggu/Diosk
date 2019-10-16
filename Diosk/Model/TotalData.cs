@@ -11,7 +11,8 @@ namespace Diosk.Model
     public class TotalData
     {
         bool isLoaded = false;
-        public int allMoney;
+        public int AllMoney { get; set; }
+        public string AllMoneyString { get; set; }
 
         private Dictionary<string, double> menuCountSlice = new Dictionary<string, double>();
 
@@ -83,9 +84,10 @@ namespace Diosk.Model
         {
             if (isLoaded) return;
 
-            allMoney = 890001;
+            AllMoney = 890001;
+            AllMoneyString = "Total: " + AllMoney.ToString() + "원";
+
             isLoaded = true;
-            //return allMoney;
         }
     }
 }
