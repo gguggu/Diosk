@@ -21,6 +21,10 @@
                 <Image Source="Assets/logo.png"
                        Margin="24, 0, 0, 0"
                        Width="86"/>
+                <!--
+                <TextBlock x:Name="tableName" Width="200" Height="30" Text="text" Margin="10,10,0,60"></TextBlock>
+                <Button x:Name="mainpage" Content="메인 화면" Width="50" Height="40" Click="Mainpage_Click"></Button>
+                -->
             </StackPanel>
             <ListBox Height="50" VerticalAlignment="Center" BorderBrush="Transparent"
                      Background="Transparent" Foreground="Brown"

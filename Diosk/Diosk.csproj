@@ -62,6 +62,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomControl1.cs" />
+    <Compile Include="LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\TotalData.cs" />
     <Compile Include="Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
@@ -69,6 +72,13 @@
     <Compile Include="Statistic.xaml.cs">
       <DependentUpon>Statistic.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TableControl.xaml.cs">
+      <DependentUpon>TableControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LoadingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,6 +99,10 @@
     <Page Include="Statistic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TableControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
