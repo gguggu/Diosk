@@ -10,6 +10,33 @@
              Background="#f2f2f2"
              FontFamily="NanumSquare"
              >
+    <UserControl.Resources>
+        <Style x:Key="ChartStyle" TargetType="Border">
+            <Setter Property="Width" Value="450"/>
+            <Setter Property="Height" Value="350"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#fafafa"/>
+            <Setter Property="CornerRadius" Value="25"/>
+        </Style>
+        <Style x:Key="TagStyle" TargetType="Border">
+            <Setter Property="BorderThickness" Value="0 0 0 4"/>
+            <Setter Property="BorderBrush" Value="#ffea00"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style x:Key="LvcStyle" TargetType="lvc:PieChart">
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="LegendLocation" Value="Bottom"/>
+            <Setter Property="Hoverable" Value="True"/>
+            <Setter Property="DataTooltip" Value="{x:Null}"/>
+        </Style>
+        <Style x:Key="TagTextStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -37,40 +64,40 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid  Grid.Column="0">
-                                <Border Width="100" Height="40" BorderThickness="0 0 0 4" BorderBrush="#ffea00" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 50, 0, 0">
-                                    <TextBlock Text="MENU" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"/>
+                                <Border Width="100" Height="40" Style="{StaticResource TagStyle}" Margin="0, 50, 0, 0">
+                                    <TextBlock Text="MENU" Style="{StaticResource TagTextStyle}"/>
                                 </Border>
-                                <Border Width="450" Height="350" HorizontalAlignment="Center" Background="#fafafa" BorderThickness="1" CornerRadius="25" Margin="0, -300, 0, 0">
+                                <Border Style="{StaticResource ChartStyle}" Margin="0, -300, 0, 0">
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="MenuCountPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}" >
+                                    <lvc:PieChart x:Name="MenuCountPie" DataClick="Chart_OnDataClick" Style="{StaticResource LvcStyle}">
                                     </lvc:PieChart>
                                 </Border>
-                                <Border Width="450" Height="350" Background="#fafafa" BorderThickness="1" CornerRadius="25" Margin="0, 500, 0, 0" >
+                                <Border Style="{StaticResource ChartStyle}" Margin="0, 500, 0, 0" >
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="MenuMoneyPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
+                                    <lvc:PieChart x:Name="MenuMoneyPie" DataClick="Chart_OnDataClick" Style="{StaticResource LvcStyle}">
                                     </lvc:PieChart>
                                 </Border>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <Border Width="160" Height="50" BorderBrush="#ffea00" BorderThickness="0 0 0 4" Margin="0, 50, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Top">
-                                    <TextBlock Text="CATEGORY" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Border Width="160" Height="50" Style="{StaticResource TagStyle}" Margin="0, 50, 0, 0">
+                                    <TextBlock Text="CATEGORY" Style="{StaticResource TagTextStyle}"/>
                                 </Border>
-                                <Border Width="450" Height="350" HorizontalAlignment="Center" Background="#fafafa" BorderThickness="1" CornerRadius="25" Margin="0, -300, 0, 0">
+                                <Border Style="{StaticResource ChartStyle}" Margin="0, -300, 0, 0">
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="CategoryCountPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
+                                    <lvc:PieChart x:Name="CategoryCountPie" DataClick="Chart_OnDataClick" Style="{StaticResource LvcStyle}">
                                     </lvc:PieChart>
                                 </Border>
-                                <Border Width="450" Height="350" Background="#fafafa" BorderThickness="1" CornerRadius="25" Margin="0, 500, 0, 0" >
+                                <Border Style="{StaticResource ChartStyle}" Margin="0, 500, 0, 0" >
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="CategoryMoneyPie" Width="400" Height="300" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="True" DataTooltip="{x:Null}">
+                                    <lvc:PieChart x:Name="CategoryMoneyPie" DataClick="Chart_OnDataClick" Style="{StaticResource LvcStyle}">
                                     </lvc:PieChart>
                                 </Border>
                             </Grid>
