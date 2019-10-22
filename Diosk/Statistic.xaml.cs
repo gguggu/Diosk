@@ -33,17 +33,6 @@ namespace Diosk
             setChart();
         }
 
-        public void Chart_OnDataClick(object sender, ChartPoint chartpoint)
-        {
-            var chart = (PieChart)chartpoint.ChartView;
-
-            foreach (PieSeries series in chart.Series)
-                series.PushOut = 0;
-
-            var selectedSeries = (PieSeries)chartpoint.SeriesView;
-            selectedSeries.PushOut = 8;
-        }
-
         public void setChart()
         {
             PieChart[] pies = new PieChart[] { MenuCountPie, MenuMoneyPie, CategoryCountPie, CategoryMoneyPie };

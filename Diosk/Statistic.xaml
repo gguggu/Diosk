@@ -71,14 +71,14 @@
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="MenuCountPie" DataClick="Chart_OnDataClick" Style="{StaticResource LvcStyle}">
+                                    <lvc:PieChart x:Name="MenuCountPie" Style="{StaticResource LvcStyle}">
                                     </lvc:PieChart>
                                 </Border>
                                 <Border Style="{StaticResource ChartStyle}" Margin="0, 500, 0, 0" >
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="MenuMoneyPie" DataClick="Chart_OnDataClick" Style="{StaticResource LvcStyle}">
+                                    <lvc:PieChart x:Name="MenuMoneyPie" Style="{StaticResource LvcStyle}">
                                     </lvc:PieChart>
                                 </Border>
                             </Grid>
@@ -90,14 +90,14 @@
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="CategoryCountPie" DataClick="Chart_OnDataClick" Style="{StaticResource LvcStyle}">
+                                    <lvc:PieChart x:Name="CategoryCountPie" Style="{StaticResource LvcStyle}">
                                     </lvc:PieChart>
                                 </Border>
                                 <Border Style="{StaticResource ChartStyle}" Margin="0, 500, 0, 0" >
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="5" Color="#eeeeee"/>
                                     </Border.Effect>
-                                    <lvc:PieChart x:Name="CategoryMoneyPie" DataClick="Chart_OnDataClick" Style="{StaticResource LvcStyle}">
+                                    <lvc:PieChart x:Name="CategoryMoneyPie" Style="{StaticResource LvcStyle}">
                                     </lvc:PieChart>
                                 </Border>
                             </Grid>
