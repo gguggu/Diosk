@@ -64,6 +64,7 @@ namespace Diosk
         private void Order_Click(object sender, RoutedEventArgs e)
         {
             Window orderPage = new Order();
+            Window.GetWindow(this).Close();
             orderPage.Show();
         }
     }

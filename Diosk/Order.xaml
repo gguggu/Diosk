@@ -19,13 +19,16 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
                 <Image Source="Assets/logo.png"
-                       Margin="24, 0, 0, 0"
+                       Margin="27, 30, 0, 0"
                        Width="86"/>
-                <!--
-                <TextBlock x:Name="tableName" Width="200" Height="30" Text="text" Margin="10,10,0,60"></TextBlock>
-                <Button x:Name="mainpage" Content="메인 화면" Width="50" Height="40" Click="Mainpage_Click"></Button>
-                -->
+                
             </StackPanel>
+
+            <!--
+            <TextBlock x:Name=" tableName" Width="200" Height="30" FontSize="24" Margin="10,0,180,50" />
+            -->
+            
+            
             <ListBox Height="50" VerticalAlignment="Center" BorderBrush="Transparent"
                      Background="Transparent" Foreground="Brown"
                       FontWeight="Bold" FontSize="18" HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,25">
@@ -34,6 +37,7 @@
                         <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
+                <Button x:Name="mainpage" Content="메인 화면" Width="100" Height="40" Click="Mainpage_Click"></Button>
                 <Button Width="100" Height="40" Content="All" Click="All_Click"  FontSize="16"></Button>
                 <Button Width="100" Height="40" Content="Coffee" Click="Coffee_Click" FontSize="16"></Button>
                 <Button Width="100" Height="40" Content="Latte" Click="Latte_Click" FontSize="16"></Button>
@@ -46,7 +50,7 @@
 
         <Grid Grid.Row="1" Width="440" Height="618" HorizontalAlignment="Left">
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                <ListView Height="400" x:Name="orderlist" SelectionChanged="Orderlist_SelectionChanged">
+                <ListView Height="400" x:Name="orderlist">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="상품명" Width="130" DisplayMemberBinding="{Binding Name}"></GridViewColumn>

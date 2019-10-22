@@ -38,8 +38,6 @@ namespace Diosk
 
             lvFood.ItemsSource = menu.All;
 
-            //tableName.Text = 
-
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
         }
 
@@ -58,29 +56,15 @@ namespace Diosk
             if (lvFood.SelectedItem != null)
             {
                 orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
-
-                
-                for (int i = 0; i < orderlist.Items.Count; i++)
-                {
-                    //food.Count = orderlist.Items.Count;
-                    if (i >= 1)
-                    {
-                        tableName.Text = orderlist.Items.GetItemAt(i - 1).ToString()
-                            + orderlist.Items.GetItemAt(i).ToString();
-                        if (orderlist.Items[i - 1].Equals(orderlist.Items[i]))
-                        {
-                            tableName.Text = orderlist.Items[i].ToString();
-                            orderlist.Items.Remove(orderlist.Items[i]);
-                            //food.Count++;
-                        }
-                    }
-                }
+                //if (orderlist.Items.Contains(orderlist.Items.Add
+                //    new Food() { Name = food.Name, Count = food.Count, Price = food.Price })) 
+                //{
+                //    orderlist.Items.Remove(orderlist.Items);
+                //}
                 resultPrice += food.Price;
 
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-            }   
-
-            
+            }
         }
 
         private void Coffee_Click(object sender, RoutedEventArgs e)
@@ -103,11 +87,6 @@ namespace Diosk
             lvFood.ItemsSource = menu.Ade;
         }
 
-        private void Tea_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void All_Click(object sender, RoutedEventArgs e)
         {
             lvFood.ItemsSource = menu.All;
@@ -125,18 +104,13 @@ namespace Diosk
         {
             Food order = (orderlist.SelectedItem as Food);
 
-            if(orderlist.SelectedItem != null)
+            if (orderlist.SelectedItem != null)
             {
                 orderlist.Items.Remove(order);
 
                 resultPrice -= order.Price;
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-            }            
-        }
-
-        private void Orderlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            }
         }
 
         private void Plus_Click(object sender, RoutedEventArgs e)
@@ -207,7 +181,9 @@ namespace Diosk
 
         private void Mainpage_Click(object sender, RoutedEventArgs e)
         {
-            
+            Window statis = new MainWindow();
+            this.Close();
+            statis.Show();
         }
     }
 

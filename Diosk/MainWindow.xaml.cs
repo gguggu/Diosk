@@ -38,6 +38,7 @@ namespace Diosk
 
         private void Statistic_Click(object sender, RoutedEventArgs e)
         {
+           
             if(navi.Visibility == Visibility.Collapsed)
             {
                 navi.Visibility = Visibility.Visible;
@@ -49,12 +50,6 @@ namespace Diosk
                 navName = "통계";
                 navBox.Text = navName;
             }
-        }
-
-        private void Order_Click(object sender, RoutedEventArgs e)
-        {
-            Window orderPage = new Order();
-            orderPage.Show();
         }
     }
 }

@@ -154,5 +154,31 @@
     <Resource Include="Assets\Latte\menu08_img01.png" />
     <Resource Include="Assets\Latte\menu08_img02.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Smoothie\menu03_img1.png" />
+    <Resource Include="Assets\Smoothie\menu03_img2.png" />
+    <Resource Include="Assets\Smoothie\menu03_img3.png" />
+    <Resource Include="Assets\Smoothie\menu03_img4.png" />
+    <Resource Include="Assets\Smoothie\menu03_img5.png" />
+    <Resource Include="Assets\Smoothie\menu03_img6.png" />
+    <Resource Include="Assets\Smoothie\menu03_img7.png" />
+    <Resource Include="Assets\Smoothie\menu03_img8.png" />
+    <Resource Include="Assets\Smoothie\menu08_img03.png" />
+    <Resource Include="Assets\Smoothie\menu08_img10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Ade\menu04_img1.png" />
+    <Resource Include="Assets\Ade\menu04_img10.png" />
+    <Resource Include="Assets\Ade\menu04_img2.png" />
+    <Resource Include="Assets\Ade\menu04_img3.png" />
+    <Resource Include="Assets\Ade\menu04_img4.png" />
+    <Resource Include="Assets\Ade\menu04_img5.png" />
+    <Resource Include="Assets\Ade\menu04_img6.png" />
+    <Resource Include="Assets\Ade\menu04_img7.png" />
+    <Resource Include="Assets\Ade\menu08_img12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\loading.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
