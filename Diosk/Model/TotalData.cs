@@ -15,7 +15,6 @@ namespace Diosk.Model
         public string AllMoneyString { get; set; }
 
         private Dictionary<string, double> menuCountSlice = new Dictionary<string, double>();
-
         public Dictionary<string, double> MenuCountSlice {
             get { return menuCountSlice; }
             set { menuCountSlice = value; }
@@ -70,14 +69,18 @@ namespace Diosk.Model
 
         public void addCategoryCount()
         {
-            CategoryCountSlice.Add("라떼", 10d);
-            CategoryCountSlice.Add("커피", 22d);
+            CategoryCountSlice.Add("LATTE", 10d);
+            CategoryCountSlice.Add("COFFEE", 22d);
+            CategoryCountSlice.Add("SMOOTHIE", 30d);
+            CategoryCountSlice.Add("ADE", 80d);
         }
 
         public void addCategoryMoney()
         {
-            CategoryMoneySlice.Add("라떼", 520000);
-            CategoryMoneySlice.Add("커피", 650000);
+            CategoryMoneySlice.Add("LATTE", 520000d);
+            CategoryMoneySlice.Add("COFFEE", 650000d);
+            CategoryMoneySlice.Add("SMOOTHIE", 990000d);
+            CategoryMoneySlice.Add("ADE", 15030000d);
         }
 
         public void LoadMoney()
