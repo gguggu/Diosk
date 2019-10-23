@@ -29,14 +29,17 @@ namespace Diosk
         {
             InitializeComponent();
 
-            this.Loaded += load_Menu;
+            
+
+            this.Loaded += load_Menu; 
         }
 
         private void load_Menu(object sender, RoutedEventArgs e)
         {
             menu.Load();
-
             lvFood.ItemsSource = menu.All;
+
+
 
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
         }
@@ -55,7 +58,28 @@ namespace Diosk
 
             if (lvFood.SelectedItem != null)
             {
+                Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
+                List<string> orderitemlist = new List<string>();
+
                 orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
+
+                orderitemlist.Add(orderitem.Name);
+
+                
+
+
+                //test.Text = orderitemlist[];
+                //test2.Text = orderitem.Name;
+
+                //if (orderitemlist[].Equals(orderitem.Name))
+                //{
+                //    orderlist.Items.RemoveAt();
+                //}
+
+                //if()
+                //{
+                //   orderlist.Items.Remove(orderlist.Items);
+                //}
                 //if (orderlist.Items.Contains(orderlist.Items.Add
                 //    new Food() { Name = food.Name, Count = food.Count, Price = food.Price })) 
                 //{
@@ -185,6 +209,20 @@ namespace Diosk
             this.Close();
             statis.Show();
         }
+
+        private void LvFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Food food = (lvFood.SelectedItem as Food);
+            imagetest.Source = new BitmapImage(new Uri(food.ImagePath, UriKind.RelativeOrAbsolute));
+
+            orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
+
+            resultPrice += food.Price;
+
+            totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+        }
+
+        
     }
 
 }
