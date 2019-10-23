@@ -213,13 +213,37 @@ namespace Diosk
         private void LvFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Food food = (lvFood.SelectedItem as Food);
-            imagetest.Source = new BitmapImage(new Uri(food.ImagePath, UriKind.RelativeOrAbsolute));
 
-            orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
+            if(lvFood.SelectedItem != null)
+            {
+                imagetest.Source = new BitmapImage(new Uri(food.ImagePath, UriKind.RelativeOrAbsolute));
 
-            resultPrice += food.Price;
+                orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
 
-            totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+                /*
+                for(int i = 0; i < orderlist.Items.Count; i++)
+                {
+                    Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
+                    List<string> orderitemlist = new List<string>();
+
+                    orderitemlist.Add(orderitem.Name);
+
+                    if (orderlist.Items.Count > i)
+                    {
+                        if (orderitemlist[i].Equals(orderitem.Name))
+                        {
+                            orderlist.Items.RemoveAt(i);
+                            orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
+                        }
+                    }
+                }
+                */
+
+                resultPrice += food.Price;
+
+                totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+            }
+            
         }
 
         

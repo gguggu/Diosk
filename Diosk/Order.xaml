@@ -80,7 +80,7 @@
             <Button Width="100" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                      Content="전체 취소" Margin="230, 0, 0, 10" Click="AllCancel_Click"></Button>
 
-            <Image x:Name="imagetest" Width="300" Height="300" Margin="200, 0, 0, 0" Source="Assets/Coffee/menu01_img1.png"></Image>
+            <Image x:Name="imagetest" Width="300" Height="300" Margin="200, 0, 0, 0"></Image>
             
         </Grid>
 
