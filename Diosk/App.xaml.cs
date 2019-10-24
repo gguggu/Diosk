@@ -14,5 +14,10 @@ namespace Diosk
     /// </summary>
     public partial class App : Application
     {
+        public static SeatDataSource seatDataSource = new SeatDataSource();
+        public App()
+        {
+            App.seatDataSource.dataLoad();
+        }
     }
 }
