@@ -24,7 +24,7 @@ namespace Diosk.Model
             {
                 new Food() {Name = "아메리카노", Price=3000, ImagePath="Assets/Coffee/menu01_img1.png", Count = 1},
                 new Food() {Name = "카페라떼", Price=3000, ImagePath="Assets/Coffee/menu01_img2.png", Count = 1},
-                new Food() {Name = "카푸치노", Price=4000, ImagePath="Assets/Coffee/menu01_img2.png", Count = 1},
+                new Food() {Name = "카푸치노", Price=4000, ImagePath="Assets/Coffee/menu01_img3.png", Count = 1},
                 new Food() {Name = "카라멜마끼아또", Price=4000, ImagePath="Assets/Coffee/menu01_img4.png", Count = 1},
                 new Food() {Name = "카페모카", Price=4500, ImagePath="Assets/Coffee/menu01_img6.png", Count = 1},
 
