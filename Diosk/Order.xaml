@@ -21,8 +21,7 @@
                 <Image Source="Assets/logo.png"
                        Margin="27, 30, 0, 0"
                        Width="86"/>
-                <TextBlock x:Name="seatNumber" FontSize="15"
-                           VerticalAlignment="Center" Margin="15,0,0,0"/>
+                
             </StackPanel>
 
             <!--
@@ -51,7 +50,7 @@
 
         <Grid Grid.Row="1" Width="440" Height="618" HorizontalAlignment="Left">
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                <ListView Height="400" x:Name="orderlist" SelectionChanged="Orderlist_SelectionChanged">
+                <ListView Height="400" x:Name="orderlist">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="상품명" Width="130" DisplayMemberBinding="{Binding Name}"></GridViewColumn>

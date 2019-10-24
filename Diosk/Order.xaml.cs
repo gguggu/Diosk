@@ -24,43 +24,14 @@ namespace Diosk
 
         int price = 0;
 
-        Seat orderInfo = new Seat();
-
         Diosk.Model.Menu menu = new Diosk.Model.Menu();
-        public Order(int id)
+        public Order()
         {
             InitializeComponent();
-            seatIdSetting(id);
-            setAlreayOrderList();
+
             this.Loaded += load_Menu;
-            //MainWindow+= seatCtrl_OrderEvent;
         }
 
-        private void setAlreayOrderList()
-        {
-            int seatIdx = orderInfo.id - 1;
-
-            if(App.seatDataSource.lstSeatData[seatIdx] != null)
-            {
-                foreach (Food food in App.seatDataSource.lstSeatData[seatIdx].lstOrderFood)
-                {
-                    orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
-                    resultPrice += food.Count * food.Price;
-                }
-            }
-        }
-
-        //private void seatCtrl_OrderEvent(object sender, MainWindow.OrderEventArgs args)
-        //{
-        //    args.id;
-        //    orderInfo.id = num;
-        //    seatNumber.Text = num.ToString() + "번 테이블";
-        //}
-        private void seatIdSetting(int id)
-        {
-            orderInfo.id = id;
-            seatNumber.Text = id.ToString() + "번 테이블";
-        }
         private void load_Menu(object sender, RoutedEventArgs e)
         {
             menu.Load();
@@ -72,23 +43,9 @@ namespace Diosk
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //결제
             DateTime dateTime = DateTime.Now;
 
             time.Text = dateTime.ToString("최근 주문 시간 : " + "h시 mm분 ss초");
-
-            Window payment = new PaymentWindow();
-            int seatIdx = orderInfo.id - 1;
-
-            foreach (Food food in orderlist.Items)
-            {
-                orderInfo.lstOrderFood.Add(food);
-            }
-
-            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
-
-            payment.Show();
-            this.Close();
         }
 
         private void BtnPlus_Click(object sender, RoutedEventArgs e)
@@ -224,32 +181,9 @@ namespace Diosk
 
         private void Mainpage_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow statis = new MainWindow();
-
-            int seatIdx = orderInfo.id- 1;
-
-            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
-
-            foreach (Food food in orderlist.Items)
-            {
-                orderInfo.lstOrderFood.Add(food);
-            }
-            //MessageBox.Show(orderInfo.lstOrderFood.Count.ToString());
-
-            for(int i = 0; i<orderInfo.lstOrderFood.Count;i++)
-            {
-                App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Add(orderInfo.lstOrderFood[i]);
-            }
-
-            statis.Refresh();
-
+            Window statis = new MainWindow();
             this.Close();
             statis.Show();
-        }
-
-        private void Orderlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 
