@@ -29,8 +29,6 @@ namespace Diosk
         {
             InitializeComponent();
 
-            
-
             this.Loaded += load_Menu; 
         }
 
@@ -39,9 +37,9 @@ namespace Diosk
             menu.Load();
             lvFood.ItemsSource = menu.All;
 
-
-
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+
+            // 메인 테이블 표시
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -49,46 +47,6 @@ namespace Diosk
             DateTime dateTime = DateTime.Now;
 
             time.Text = dateTime.ToString("최근 주문 시간 : " + "h시 mm분 ss초");
-        }
-
-        private void BtnPlus_Click(object sender, RoutedEventArgs e)
-        {
-            // as is 시험
-            Food food = (lvFood.SelectedItem as Food);
-
-            if (lvFood.SelectedItem != null)
-            {
-                Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
-                List<string> orderitemlist = new List<string>();
-
-                orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
-
-                orderitemlist.Add(orderitem.Name);
-
-                
-
-
-                //test.Text = orderitemlist[];
-                //test2.Text = orderitem.Name;
-
-                //if (orderitemlist[].Equals(orderitem.Name))
-                //{
-                //    orderlist.Items.RemoveAt();
-                //}
-
-                //if()
-                //{
-                //   orderlist.Items.Remove(orderlist.Items);
-                //}
-                //if (orderlist.Items.Contains(orderlist.Items.Add
-                //    new Food() { Name = food.Name, Count = food.Count, Price = food.Price })) 
-                //{
-                //    orderlist.Items.Remove(orderlist.Items);
-                //}
-                resultPrice += food.Price;
-
-                totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-            }
         }
 
         private void Coffee_Click(object sender, RoutedEventArgs e)
@@ -122,6 +80,8 @@ namespace Diosk
 
             resultPrice = 0;
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+
+            // 메인 테이블 표시
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -134,13 +94,14 @@ namespace Diosk
 
                 resultPrice -= order.Price;
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+
+                // 메인 테이블 표시
             }
         }
 
         private void Plus_Click(object sender, RoutedEventArgs e)
         {
             Food order = (orderlist.SelectedItem as Food);
-
 
             if(orderlist.SelectedItem != null)
             {
@@ -164,6 +125,8 @@ namespace Diosk
 
                 resultPrice += price;
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+
+                // 메인 테이블 표시
             }
         }
 
@@ -200,6 +163,8 @@ namespace Diosk
                 
                 resultPrice -= price;
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+
+                // 메인 테이블 표시
             }
         }
 
@@ -218,32 +183,31 @@ namespace Diosk
             {
                 imagetest.Source = new BitmapImage(new Uri(food.ImagePath, UriKind.RelativeOrAbsolute));
 
-                orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
+                Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
+
+                orderlist.Items.Add(orderitem);
 
                 /*
-                for(int i = 0; i < orderlist.Items.Count; i++)
+                List<string> orderitemlist = new List<string>();
+
+                orderitemlist.Add(orderitem.Name);
+
+                for (int i = 0; i < orderitemlist.Count; i++)
                 {
-                    Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
-                    List<string> orderitemlist = new List<string>();
-
-                    orderitemlist.Add(orderitem.Name);
-
-                    if (orderlist.Items.Count > i)
-                    {
                         if (orderitemlist[i].Equals(orderitem.Name))
                         {
-                            orderlist.Items.RemoveAt(i);
-                            orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
+                            orderlist.Items.Remove(orderlist.Items[i]);
                         }
-                    }
                 }
                 */
 
                 resultPrice += food.Price;
 
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+
+                // 메인 테이블 표시
             }
-            
+
         }
 
         

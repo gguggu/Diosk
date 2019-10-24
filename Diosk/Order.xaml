@@ -21,14 +21,7 @@
                 <Image Source="Assets/logo.png"
                        Margin="27, 30, 0, 0"
                        Width="86"/>
-                <TextBlock x:Name="test" Text="fff  "></TextBlock>
-                <TextBlock x:Name="test2" Text="fff"></TextBlock>
             </StackPanel>
-
-            <!--
-            <TextBlock x:Name=" tableName" Width="200" Height="30" FontSize="24" Margin="10,0,180,50" />
-            -->
-
 
             <ListBox Height="50" VerticalAlignment="Center" BorderBrush="Transparent"
                      Background="Transparent" Foreground="Brown"
@@ -44,7 +37,6 @@
                 <Button Width="100" Height="40" Content="Latte" Click="Latte_Click" FontSize="16"></Button>
                 <Button Width="100" Height="40" Content="Smoothie" Click="Smoothie_Click" FontSize="16"></Button>
                 <Button Width="100" Height="40" Content="Ade" Click="Ade_Click"  FontSize="16"></Button>
-                <!--<Button Width="100" Height="40" Content="Tea" Click="Tea_Click"  FontSize="16"></Button-->
             </ListBox>
 
         </Grid>
