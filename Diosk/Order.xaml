@@ -22,13 +22,10 @@
                        Margin="27, 30, 0, 0"
                        Width="86"/>
                 
+                <TextBlock x:Name="seatNumber" FontSize="15"
+                           VerticalAlignment="Center" Margin="15,0,0,0"/>
             </StackPanel>
 
-            <!--
-            <TextBlock x:Name=" tableName" Width="200" Height="30" FontSize="24" Margin="10,0,180,50" />
-            -->
-            
-            
             <ListBox Height="50" VerticalAlignment="Center" BorderBrush="Transparent"
                      Background="Transparent" Foreground="Brown"
                       FontWeight="Bold" FontSize="18" HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,25">
@@ -37,18 +34,23 @@
                         <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                <Button x:Name="mainpage" Content="메인 화면" Width="100" Height="40" Click="Mainpage_Click"></Button>
-                <Button Width="100" Height="40" Content="All" Click="All_Click"  FontSize="16"></Button>
-                <Button Width="100" Height="40" Content="Coffee" Click="Coffee_Click" FontSize="16"></Button>
-                <Button Width="100" Height="40" Content="Latte" Click="Latte_Click" FontSize="16"></Button>
-                <Button Width="100" Height="40" Content="Smoothie" Click="Smoothie_Click" FontSize="16"></Button>
-                <Button Width="100" Height="40" Content="Ade" Click="Ade_Click"  FontSize="16"></Button>
-                <!--<Button Width="100" Height="40" Content="Tea" Click="Tea_Click"  FontSize="16"></Button-->
+                <Button x:Name="mainpage" Content="메인 화면" Width="100" Height="40" Click="Mainpage_Click"
+                        Background="Black" Foreground="White"></Button>
+                <Button Width="100" Height="40" Content="All" Click="All_Click"  FontSize="16"
+                        Background="Black" Foreground="White"></Button>
+                <Button Width="100" Height="40" Content="Coffee" Click="Coffee_Click" FontSize="16"
+                        Background="Black" Foreground="White"></Button>
+                <Button Width="100" Height="40" Content="Latte" Click="Latte_Click" FontSize="16"
+                        Background="Black" Foreground="White"></Button>
+                <Button Width="100" Height="40" Content="Smoothie" Click="Smoothie_Click" FontSize="16"
+                        Background="Black" Foreground="White"></Button>
+                <Button Width="100" Height="40" Content="Ade" Click="Ade_Click"  FontSize="16"
+                        Background="Black" Foreground="White"></Button>
             </ListBox>
 
         </Grid>
 
-        <Grid Grid.Row="1" Width="440" Height="618" HorizontalAlignment="Left">
+        <Grid Grid.Row="1" Width="1140" Height="618" HorizontalAlignment="Left">
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                 <ListView Height="400" x:Name="orderlist">
                     <ListView.View>
@@ -61,32 +63,40 @@
                 </ListView>
             </StackPanel>
 
-            <Button x:Name="Plus" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10, 10, 10, 150"
-                    Content="+" FontSize="30" Click="Plus_Click"></Button>
-            <Button x:Name="Minus" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="70, 70, 10, 150"
-                    Content="-" FontSize="30" Click="Minus_Click"></Button>
+            <Button x:Name="Plus" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10, 10, 10, 145"
+                    Content="+" FontSize="30" Click="Plus_Click" Background="Black" Foreground="White"></Button>
+            <Button x:Name="Minus" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="70, 70, 10, 145"
+                    Content="-" FontSize="30" Click="Minus_Click" Background="Black" Foreground="White"></Button>
 
-            <TextBlock x:Name="time" Text="최근 주문 시간 : " FontSize="16" VerticalAlignment="Bottom" Margin="10, 30, 30, 115"></TextBlock>
+            <TextBlock x:Name="time" Text="최근 주문 시간 : " FontSize="18" VerticalAlignment="Bottom" Margin="10, 30, 30, 105"></TextBlock>
 
-            <Button x:Name="Add" Width="100" Height="40" Content="추가" Click="BtnPlus_Click"
-                        VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 330 60"/>
-
-            <TextBlock x:Name="totalPrice" Text="전체 금액 : " VerticalAlignment="Bottom" FontSize="18"
-                       HorizontalAlignment="Right" Margin="0,0,120,68" Width="200"></TextBlock>
+            <TextBlock x:Name="totalPrice" Text="전체 금액 : " VerticalAlignment="Bottom" FontSize="18" Margin="0,0,920,68" Width="200"></TextBlock>
 
             <Button Width="100" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                     Content="결제" Margin="10" Click="Button_Click"></Button>
+                     Content="결제" Margin="10" Click="Button_Click" Background="Black" Foreground="White"></Button>
 
             <Button Width="100" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                     Content="취소" Margin="120, 0, 0, 10" Click="Cancel_Click"></Button>
+                     Content="취소" Margin="120, 0, 0, 10" Click="Cancel_Click" Background="Black" Foreground="White"></Button>
 
             <Button Width="100" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                     Content="전체 취소" Margin="230, 0, 0, 10" Click="AllCancel_Click"></Button>
+                     Content="전체 취소" Margin="230, 0, 0, 10" Click="AllCancel_Click" Background="Black" Foreground="White"></Button>
+
+            <Image x:Name="imagetest" Width="300" Height="300" Margin="200, 0, 0, 0"></Image>
 
         </Grid>
 
+
+
         <Grid Grid.Row="2" Width="420" HorizontalAlignment="Right">
-            <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="63"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      SelectionChanged="LvFood_SelectionChanged" Grid.ColumnSpan="2">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
@@ -95,7 +105,7 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="440" Height="150" >
+                        <Grid Width="440" Height="150">
                             <Image Source="{Binding ImagePath}"></Image>
                             <TextBlock Text="{Binding Name}" FontSize="20" FontWeight="Bold"></TextBlock>
                             <TextBlock Text="{Binding Price}" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"
