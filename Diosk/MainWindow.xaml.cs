@@ -52,11 +52,13 @@ namespace Diosk
             if(navi.Visibility == Visibility.Collapsed)
             {
                 navi.Visibility = Visibility.Visible;
+                MainGrid.Visibility = Visibility.Collapsed;
                 navName = "메인";
                 navBox.Text = navName;
             } else if(navi.Visibility == Visibility.Visible)
             {
                 navi.Visibility = Visibility.Collapsed;
+                MainGrid.Visibility = Visibility.Visible;
                 navName = "통계";
                 navBox.Text = navName;
             }
@@ -66,9 +68,7 @@ namespace Diosk
         {
             public int id;
         }
-        /// <summary>
-        /// Interaction logic for TableControl.xaml
-        /// </summary>
+
         public delegate void OrderHandler(object sender, OrderEventArgs args);
 
         public event OrderHandler OnOrder;
