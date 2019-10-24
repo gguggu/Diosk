@@ -7,12 +7,35 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <local:TableControl x:Name="tableCtrl" Visibility="Visible" Background="Black"/>
         <local:LoadingWindow x:Name="loadingCtrl" Visibility="Collapsed" 
                              Height="450" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <local:Statistic x:Name="navi" Visibility="Collapsed"/>
         <Button Width="50" Height="50" Background="Gold" Click="Statistic_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 20, 20, 0">
             <TextBlock Text="통계" Name="navBox"/>
         </Button>
+        <Grid  Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="lstOrder" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="Order_Click"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+            
+            <Canvas>
+                <TextBlock x:Name="timer" Canvas.Top="15" Canvas.Right="25"
+                       FontSize="15" Foreground="White"/>
+            </Canvas>
+        </Grid>
     </Grid>
 </Window>
