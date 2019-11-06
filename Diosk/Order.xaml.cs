@@ -32,7 +32,6 @@ namespace Diosk
             InitializeComponent();
             seatIdSetting(id);
             setAlreayOrderList();
-            //MainWindow+= seatCtrl_OrderEvent;
             this.Loaded += load_Menu;
         }
 
@@ -72,15 +71,17 @@ namespace Diosk
 
             time.Text = dateTime.ToString("최근 주문 시간 : " + "h시 mm분 ss초");
 
-            Window payment = new PaymentWindow();
-            int seatIdx = orderInfo.id - 1;
+            Window payment = null;
+
+            updateOrderList();
+            orderInfo.lstOrderFood.Clear();
 
             foreach (Food food in orderlist.Items)
             {
                 orderInfo.lstOrderFood.Add(food);
             }
 
-            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
+            payment = new PaymentWindow(orderInfo);
 
             payment.Show();
             this.Close();
@@ -205,10 +206,8 @@ namespace Diosk
             }
         }
 
-        private void Mainpage_Click(object sender, RoutedEventArgs e)
+        private void updateOrderList()
         {
-            MainWindow statis = new MainWindow();
-
             int seatIdx = orderInfo.id - 1;
 
             App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
@@ -217,13 +216,18 @@ namespace Diosk
             {
                 orderInfo.lstOrderFood.Add(food);
             }
-            //MessageBox.Show(orderInfo.lstOrderFood.Count.ToString());
 
             for (int i = 0; i < orderInfo.lstOrderFood.Count; i++)
             {
                 App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Add(orderInfo.lstOrderFood[i]);
             }
+        }
 
+        private void Mainpage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow statis = new MainWindow();
+
+            updateOrderList();
             statis.Refresh();
 
             this.Close();
@@ -254,7 +258,7 @@ namespace Diosk
                         if (!orderitemlist[i].Equals(orderitem.Name))
                         {
                             orderitem.Count += 1;
-
+                                
                         }
                         else if (orderitemlist[i].Equals(orderitem.Name))
                         {
