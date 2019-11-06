@@ -19,11 +19,11 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
                 <Image Source="Assets/logo.png"
-                       Margin="27, 30, 0, 0"
+                       Margin="27, 8, 0, 0"
                        Width="86"/>
                 
-                <TextBlock x:Name="seatNumber" FontSize="15"
-                           VerticalAlignment="Center" Margin="15,0,0,0"/>
+                <TextBlock x:Name="seatNumber" FontSize="24"
+                           VerticalAlignment="Center" Margin="18,8,0,0"/>
             </StackPanel>
 
             <ListBox Height="50" VerticalAlignment="Center" BorderBrush="Transparent"

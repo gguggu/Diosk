@@ -43,18 +43,13 @@ namespace Diosk
             foreach(var pie in pies)
             {
                 if(pie == MenuCountPie)
-                {
                     AddSeries(pie, labelPoint, totalData.MenuCountSlice);
-                } else if(pie == MenuMoneyPie)
-                {
+                else if(pie == MenuMoneyPie)
                     AddSeries(pie, labelPoint, totalData.MenuMoneySlice);
-                } else if(pie == CategoryCountPie)
-                {
+                else if(pie == CategoryCountPie)
                     AddSeries(pie, labelPoint, totalData.CategoryCountSlice);
-                } else if(pie == CategoryMoneyPie)
-                {
+                else if(pie == CategoryMoneyPie)
                     AddSeries(pie, labelPoint, totalData.CategoryMoneySlice);
-                }
             }
         }
 

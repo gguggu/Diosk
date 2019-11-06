@@ -26,18 +26,21 @@ namespace Diosk
 
         int price = 0;
 
+        int seatIdx = 0;
+
         Diosk.Model.Menu menu = new Diosk.Model.Menu();
         public Order(int id)
         {
             InitializeComponent();
             seatIdSetting(id);
             setAlreayOrderList();
+            //MainWindow+= seatCtrl_OrderEvent;
             this.Loaded += load_Menu;
         }
 
         private void setAlreayOrderList()
         {
-            int seatIdx = orderInfo.id - 1;
+            seatIdx = orderInfo.id - 1;
 
             if (App.seatDataSource.lstSeatData[seatIdx] != null)
             {
@@ -61,8 +64,6 @@ namespace Diosk
             lvFood.ItemsSource = menu.All;
 
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-
-            // 메인 테이블 표시
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -71,17 +72,15 @@ namespace Diosk
 
             time.Text = dateTime.ToString("최근 주문 시간 : " + "h시 mm분 ss초");
 
-            Window payment = null;
-
-            updateOrderList();
-            orderInfo.lstOrderFood.Clear();
+            Window payment = new PaymentWindow();
+            int seatIdx = orderInfo.id - 1;
 
             foreach (Food food in orderlist.Items)
             {
                 orderInfo.lstOrderFood.Add(food);
             }
 
-            payment = new PaymentWindow(orderInfo);
+            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
 
             payment.Show();
             this.Close();
@@ -115,11 +114,10 @@ namespace Diosk
         private void AllCancel_Click(object sender, RoutedEventArgs e)
         {
             orderlist.Items.Clear();
+            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
 
             resultPrice = 0;
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-
-            // 메인 테이블 표시
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -129,11 +127,10 @@ namespace Diosk
             if (orderlist.SelectedItem != null)
             {
                 orderlist.Items.Remove(order);
+                App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Remove(order);
 
                 resultPrice -= order.Price;
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-
-                // 메인 테이블 표시
             }
         }
 
@@ -158,13 +155,11 @@ namespace Diosk
                 order.Count++;
                 order.Price += price;
 
-                orderlist.Items.Remove(order);
-                orderlist.Items.Add(order);
+
+                orderlist.Items.Refresh();
 
                 resultPrice += price;
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-
-                // 메인 테이블 표시
             }
         }
 
@@ -192,22 +187,22 @@ namespace Diosk
                 if (order.Count == 0)
                 {
                     orderlist.Items.Remove(order);
+                    App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Remove(order);
                 }
                 else
                 {
-                    orderlist.Items.Remove(order);
-                    orderlist.Items.Add(order);
+                    orderlist.Items.Refresh();
                 }
 
                 resultPrice -= price;
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-
-                // 메인 테이블 표시
             }
         }
 
-        private void updateOrderList()
+        private void Mainpage_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow statis = new MainWindow();
+
             int seatIdx = orderInfo.id - 1;
 
             App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
@@ -216,18 +211,13 @@ namespace Diosk
             {
                 orderInfo.lstOrderFood.Add(food);
             }
+            //MessageBox.Show(orderInfo.lstOrderFood.Count.ToString());
 
             for (int i = 0; i < orderInfo.lstOrderFood.Count; i++)
             {
                 App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Add(orderInfo.lstOrderFood[i]);
             }
-        }
 
-        private void Mainpage_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow statis = new MainWindow();
-
-            updateOrderList();
             statis.Refresh();
 
             this.Close();
@@ -236,49 +226,44 @@ namespace Diosk
 
         private void LvFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (lvFood.SelectedIndex == -1)
+            {
+                return;
+            }
+
             Food food = (lvFood.SelectedItem as Food);
 
             if (lvFood.SelectedItem != null)
             {
                 imagetest.Source = new BitmapImage(new Uri(food.ImagePath, UriKind.RelativeOrAbsolute));
 
-                Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
+                bool isExistFood = false;
 
-                List<string> orderitemlist = new List<string>();
-
-                orderlist.Items.Add(orderitem);
-
-                orderitemlist.Add(orderitem.Name);
-
-                /*
-                for (int i = 0; i < orderitemlist.Count; i++)
+                foreach (Food item in App.seatDataSource.lstSeatData[seatIdx].lstOrderFood)
                 {
-                    if(i >= 1)
+                    if (item.Name == food.Name)
                     {
-                        if (!orderitemlist[i].Equals(orderitem.Name))
-                        {
-                            orderitem.Count += 1;
-                                
-                        }
-                        else if (orderitemlist[i].Equals(orderitem.Name))
-                        {
-                            //orderlist.Items.Remove(orderlist.Items[i]);
-                            //orderlist.Items.Add(orderitem);
-                        }
+                        item.Count++;
+                        item.Price += food.Price;
+                        isExistFood = true;
                     }
                 }
-                */
+
+                if (isExistFood == false)
+                {
+                    Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
+                    orderlist.Items.Add(orderitem);
+                    App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Add(orderitem);
+                }
+
+                orderlist.Items.Refresh();
 
                 resultPrice += food.Price;
 
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
 
-                // 메인 테이블 표시
+                lvFood.SelectedIndex = -1;
             }
-
         }
-
-
     }
-
 }
