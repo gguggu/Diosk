@@ -65,6 +65,22 @@ namespace Diosk
 
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
         }
+        private void updateOrderList()
+        {
+            int seatIdx = orderInfo.id - 1;
+
+            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
+
+            foreach (Food food in orderlist.Items)
+            {
+                orderInfo.lstOrderFood.Add(food);
+            }
+
+            for (int i = 0; i < orderInfo.lstOrderFood.Count; i++)
+            {
+                App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Add(orderInfo.lstOrderFood[i]);
+            }
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -72,15 +88,17 @@ namespace Diosk
 
             time.Text = dateTime.ToString("최근 주문 시간 : " + "h시 mm분 ss초");
 
-            Window payment = new PaymentWindow();
-            int seatIdx = orderInfo.id - 1;
+            Window payment = null;
+
+            updateOrderList();
+            orderInfo.lstOrderFood.Clear();
 
             foreach (Food food in orderlist.Items)
             {
                 orderInfo.lstOrderFood.Add(food);
             }
 
-            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
+            payment = new PaymentWindow(orderInfo);
 
             payment.Show();
             this.Close();
@@ -203,21 +221,7 @@ namespace Diosk
         {
             MainWindow statis = new MainWindow();
 
-            int seatIdx = orderInfo.id - 1;
-
-            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
-
-            foreach (Food food in orderlist.Items)
-            {
-                orderInfo.lstOrderFood.Add(food);
-            }
-            //MessageBox.Show(orderInfo.lstOrderFood.Count.ToString());
-
-            for (int i = 0; i < orderInfo.lstOrderFood.Count; i++)
-            {
-                App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Add(orderInfo.lstOrderFood[i]);
-            }
-
+            updateOrderList();
             statis.Refresh();
 
             this.Close();
