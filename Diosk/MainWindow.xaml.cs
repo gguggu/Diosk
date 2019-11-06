@@ -30,7 +30,6 @@ namespace Diosk
             InitializeComponent();
             setSeat();
             timeLoading();
-            //addSeatItem();
 
             this.Loaded += MainWindow_Loaded;
         }
@@ -64,16 +63,7 @@ namespace Diosk
             }
         }
 
-        public class OrderEventArgs : EventArgs
-        {
-            public int id;
-        }
-
-        public delegate void OrderHandler(object sender, OrderEventArgs args);
-
-        public event OrderHandler OnOrder;
-
-       private Seat seat = new Seat();
+        private Seat seat = new Seat();
 
         private void setSeat()
         {
@@ -94,32 +84,6 @@ namespace Diosk
                 }
             }
         }
-        /*private void addSeatItem()
-        {
-            Seat seat = new Seat();
-            Food food = new Food();
-
-            food.Name = "아메리카노";
-            food.Count = 1;
-            seat.id = 0;
-            seat.lstOrderFood.Add(food);
-
-            //foreach (Seat items in App.seatDataSource.lstSeatData)
-            //{
-            //    if(items.id == 1)
-            //    {
-            //        App.seatDataSource.lstSeatData.Remove(items);
-            //        App.seatDataSource.lstSeatData.Add(seat);
-            //    }
-            //}
-            for (int i = 0; i < App.seatDataSource.lstSeatData.Count; i++)
-            {
-                if (i == seat.id)
-                {
-                    App.seatDataSource.lstSeatData[i].lstOrderFood.Add(food);
-                }
-            }
-        }*/
 
         private void timeLoading()
         {
@@ -130,7 +94,7 @@ namespace Diosk
         private void timer_Tick(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-            string currentTime = now.ToString("hh:mm:ss");
+            string currentTime = now.ToString("yyyy년 MM월 dd일 HH:mm:ss");
 
             timer.Text = "현재시간: " + currentTime;
         }
@@ -138,21 +102,14 @@ namespace Diosk
         private void Order_Click(object sender, RoutedEventArgs e)
         {
             Window orderPage = null;
-            //OrderEventArgs args = new OrderEventArgs();
 
             var seatControl = (sender as ListViewItem).Content as SeatControl;
             int id = int.Parse(seatControl.id.Text);
 
             orderPage = new Order(id);
 
-            //if (OnOrder != null)
-            //{
-            //    OnOrder(this, args);
-            //}
-
             Window.GetWindow(this).Close();
             orderPage.Show();
         }
     }
 }
-

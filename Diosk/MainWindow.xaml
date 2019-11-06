@@ -33,8 +33,8 @@
             </ListView>
             
             <Canvas>
-                <TextBlock x:Name="timer" Canvas.Top="15" Canvas.Right="25"
-                       FontSize="15" Foreground="White"/>
+                <TextBlock x:Name="timer" Canvas.Top="15" Canvas.Left="25"
+                       FontSize="15" Foreground="White"/> <!-- Canvas.Right="25" !-->
             </Canvas>
         </Grid>
     </Grid>
