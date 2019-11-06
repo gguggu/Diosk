@@ -25,21 +25,5 @@ namespace Diosk
         {
             InitializeComponent();
         }
-
-        //private void Order_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Seat seat = new Seat();
-        //    SeatControl seatCtrl = sender as SeatControl;
-        //    Window orderPage = new Order();
-
-        //    seat.id = seatCtrl.id.Text;
-
-        //    if (OrderEvent != null)
-        //    {
-        //        OrderEvent(this, seat);
-        //    }
-
-        //    orderPage.Show();
-        //}
     }
 }
