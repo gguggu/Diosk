@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Diosk.Model;
 
 namespace Diosk
 {
@@ -19,28 +21,65 @@ namespace Diosk
     /// </summary>
     public partial class PaymentWindow : Window
     {
-        public PaymentWindow()
+        Seat payingSeat = null;
+        public PaymentWindow(Seat orderInfo)
         {
             InitializeComponent();
+            payingSeat = new Seat();
+            payingSeat.id = orderInfo.id;
+            payingSeat.lstOrderFood = orderInfo.lstOrderFood;
+            setSeat();
         }
         private void setSeat()
         {
-            lstOrder.Items.Clear();
-            foreach (Seat items in App.seatDataSource.lstSeatData)
+            int total = 0;
+
+            tableId.Text = payingSeat.id.ToString() + "번 테이블";
+
+            if (payingSeat.lstOrderFood != null)
             {
-                SeatControl seatCtrl = new SeatControl();
-
-                seatCtrl.id.Text = (items.id + 1).ToString();
-
-                if (items.lstOrderFood != null)
+                foreach (Food items in payingSeat.lstOrderFood)
                 {
-                    foreach (Food foodList in items.lstOrderFood)
-                    {
-                        seatCtrl.foodOrderList.Text += foodList.Name + " X " + foodList.Count.ToString() + "\n";
-                    }
-                    lstOrder.Items.Add(seatCtrl);
+                    foodOrderList.Text += items.Name + " X " + items.Count.ToString() + "\n";
+                    total += items.Price * items.Count;
                 }
             }
+
+            totalPrice.Text = "총 금액: " + total.ToString() + "￦";
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("결제를 취소하시겠습니까?", "취소", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Order order = new Order(payingSeat.id);
+                order.Show();
+                this.Close();
+            }
+        }
+
+        private void Pay_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("결제하시겠습니까?", "결제 확인", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                MainWindow main = new MainWindow();
+
+                App.seatDataSource.lstSeatData[payingSeat.id - 1].lstOrderFood.Clear();
+
+
+                main.Refresh();
+
+                this.Close();
+                main.Show();
+            }
+        }
+
+        private void PaymentChange_Click(object sender, RoutedEventArgs e)
+        {
+            if (payment.IsChecked.Value)
+                payment.Content = "카드";
+            else
+                payment.Content = "현금";
         }
     }
 }
