@@ -13,6 +13,9 @@
         <Button Width="50" Height="50" Background="Gold" Panel.ZIndex="100" Click="Statistic_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 20, 20, 0">
             <TextBlock Text="통계" Name="navBox"/>
         </Button>
+        <Button Width="50" Height="50" Background="Gold" Panel.ZIndex="100" Click="LoginClick" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 20, 100, 0">
+            <TextBlock Text="로그인"/>
+        </Button>
         <Grid  Background="Black" x:Name="MainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
