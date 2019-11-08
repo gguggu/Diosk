@@ -111,5 +111,15 @@ namespace Diosk
             Window.GetWindow(this).Close();
             orderPage.Show();
         }
+
+        private void LoginClick(object sender, RoutedEventArgs e)
+        {
+            Window loginPage = null;
+
+            loginPage = new ChatService();
+
+            loginPage.Show();
+            Window.GetWindow(this).Close();
+        }
     }
 }
