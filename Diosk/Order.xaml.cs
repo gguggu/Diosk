@@ -47,7 +47,7 @@ namespace Diosk
                 foreach (Food food in App.seatDataSource.lstSeatData[seatIdx].lstOrderFood)
                 {
                     orderlist.Items.Add(new Food() { Name = food.Name, Count = food.Count, Price = food.Price });
-                    resultPrice += food.Count * food.Price;
+                    resultPrice += food.Price;
                 }
             }
         }
@@ -243,7 +243,7 @@ namespace Diosk
 
                 bool isExistFood = false;
 
-                foreach (Food item in App.seatDataSource.lstSeatData[seatIdx].lstOrderFood)
+                foreach (Food item in orderlist.Items)
                 {
                     if (item.Name == food.Name)
                     {
@@ -257,7 +257,6 @@ namespace Diosk
                 {
                     Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
                     orderlist.Items.Add(orderitem);
-                    App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Add(orderitem);
                 }
 
                 orderlist.Items.Refresh();
