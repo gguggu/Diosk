@@ -8,7 +8,7 @@ namespace Diosk.Model
 {
     public class Menu
     {
-        private bool isLoaded = false;
+        public bool isLoaded = false;
 
         public List<Food> All = null;
         public List<Food> Coffee = null;
