@@ -9,6 +9,8 @@ namespace Diosk.Common
     public enum eCategory
     {
         COFFEE,
-        DESSERT,
+        LATTE,
+        SMOOTHIE,
+        ADE
     }
 }
