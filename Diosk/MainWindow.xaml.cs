@@ -23,13 +23,10 @@ namespace Diosk
     /// </summary>
     public partial class MainWindow : Window
     {
-        Diosk.Model.Menu menu = new Diosk.Model.Menu();
         public string navName = "통계";
         public MainWindow()
         {
             InitializeComponent();
-            setSeat();
-            timeLoading();
 
             this.Loaded += MainWindow_Loaded;
         }
@@ -39,10 +36,19 @@ namespace Diosk
             setSeat();
             lstOrder.Items.Refresh();
         }
+        private void alignCenter()
+        {
+            Window currentWindow = Window.GetWindow(this);
+
+            currentWindow.Top = this.Top + (this.ActualHeight - currentWindow.Height) / 2;
+            currentWindow.Left = this.Left + (this.ActualWidth - currentWindow.Width) / 2;
+        }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            menu.Load();
+            alignCenter();
+            setSeat();
+            timeLoading();
         }
 
         private void Statistic_Click(object sender, RoutedEventArgs e)
@@ -114,11 +120,11 @@ namespace Diosk
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
-            Window loginPage = null;
+            //Window loginPage = null;
 
-            loginPage = new ChatService();
+            //loginPage = new ChatService();
 
-            loginPage.Show();
+            //loginPage.Show();
             Window.GetWindow(this).Close();
         }
     }
