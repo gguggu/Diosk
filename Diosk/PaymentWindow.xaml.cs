@@ -64,9 +64,11 @@ namespace Diosk
             {
                 MainWindow main = new MainWindow();
 
+                /*
+                 * 통계쪽으로 결제된 음식 정보 보내는 구간 ( 추후에 작성할 예정.. )
+                 */
+
                 App.seatDataSource.lstSeatData[payingSeat.id - 1].lstOrderFood.Clear();
-
-
                 main.Refresh();
 
                 this.Close();
