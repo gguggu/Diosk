@@ -255,7 +255,7 @@ namespace Diosk
 
                 if (isExistFood == false)
                 {
-                    Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price };
+                    Food orderitem = new Food() { Name = food.Name, Count = food.Count, Price = food.Price, Category = food.Category };
                     orderlist.Items.Add(orderitem);
                 }
 
