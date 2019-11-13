@@ -1,4 +1,5 @@
-﻿using Diosk.Model;
+﻿using Diosk.Common;
+using Diosk.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,29 +105,31 @@ namespace Diosk
             this.Close();
         }
 
-        private void Coffee_Click(object sender, RoutedEventArgs e)
+        private void categoryClick(object sender, RoutedEventArgs e)
         {
-            lvFood.ItemsSource = menu.Coffee;
-        }
+            Button btnCategory = sender as Button;
+            string category = btnCategory.Content.ToString().ToUpper();
+            bool isAll = false;
 
-        private void Latte_Click(object sender, RoutedEventArgs e)
-        {
-            lvFood.ItemsSource = menu.Latte;
-        }
+            List<Food> lstAllFood = category.Equals("ALL") ? menu.All : null;
+            List<Food> lstInsert = new List<Food>();
 
-        private void Smoothie_Click(object sender, RoutedEventArgs e)
-        {
-            lvFood.ItemsSource = menu.Smoothie;
-        }
+            if (!(lstAllFood == null))
+                isAll = true;
 
-        private void Ade_Click(object sender, RoutedEventArgs e)
-        {
-            lvFood.ItemsSource = menu.Ade;
-        }
+            if (!isAll)
+            {
+                foreach (Enum item in Enum.GetValues(typeof(eCategory)))
+                {
+                    if (item.ToString().Equals(category))
+                        lstAllFood = menu.All.FindAll(x => x.Category.Equals(item));
+                }
+            }
 
-        private void All_Click(object sender, RoutedEventArgs e)
-        {
-            lvFood.ItemsSource = menu.All;
+            foreach (Food item in lstAllFood)
+                lstInsert.Add(item);
+
+            lvFood.ItemsSource = lstInsert;
         }
 
         private void AllCancel_Click(object sender, RoutedEventArgs e)

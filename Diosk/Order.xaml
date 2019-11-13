@@ -36,15 +36,15 @@
                 </ListBox.ItemsPanel>
                 <Button x:Name="mainpage" Content="메인 화면" Width="100" Height="40" Click="Mainpage_Click"
                         Background="Black" Foreground="White"></Button>
-                <Button Width="100" Height="40" Content="All" Click="All_Click"  FontSize="16"
+                <Button Width="100" Height="40" Content="All" Click="categoryClick"  FontSize="16"
                         Background="Black" Foreground="White"></Button>
-                <Button Width="100" Height="40" Content="Coffee" Click="Coffee_Click" FontSize="16"
+                <Button Width="100" Height="40" Content="Coffee" Click="categoryClick" FontSize="16"
                         Background="Black" Foreground="White"></Button>
-                <Button Width="100" Height="40" Content="Latte" Click="Latte_Click" FontSize="16"
+                <Button Width="100" Height="40" Content="Latte" Click="categoryClick" FontSize="16"
                         Background="Black" Foreground="White"></Button>
-                <Button Width="100" Height="40" Content="Smoothie" Click="Smoothie_Click" FontSize="16"
+                <Button Width="100" Height="40" Content="Smoothie" Click="categoryClick" FontSize="16"
                         Background="Black" Foreground="White"></Button>
-                <Button Width="100" Height="40" Content="Ade" Click="Ade_Click"  FontSize="16"
+                <Button Width="100" Height="40" Content="Ade" Click="categoryClick"  FontSize="16"
                         Background="Black" Foreground="White"></Button>
             </ListBox>
 
