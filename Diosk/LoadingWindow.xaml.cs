@@ -38,10 +38,13 @@ namespace Diosk
         }
         private void alignCenter()
         {
-            Window currentWindow = Window.GetWindow(this);
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
 
-            currentWindow.Top = this.Top + (this.ActualHeight - currentWindow.Height) / 2;
-            currentWindow.Left = this.Left + (this.ActualWidth - currentWindow.Width) / 2;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
         private void loadingStart()
         {

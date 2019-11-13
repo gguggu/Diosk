@@ -27,7 +27,6 @@ namespace Diosk
         public MainWindow()
         {
             InitializeComponent();
-
             this.Loaded += MainWindow_Loaded;
         }
 
@@ -36,19 +35,23 @@ namespace Diosk
             setSeat();
             lstOrder.Items.Refresh();
         }
-        private void alignCenter()
-        {
-            Window currentWindow = Window.GetWindow(this);
-
-            currentWindow.Top = this.Top + (this.ActualHeight - currentWindow.Height) / 2;
-            currentWindow.Left = this.Left + (this.ActualWidth - currentWindow.Width) / 2;
-        }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             alignCenter();
             setSeat();
             timeLoading();
+        }
+
+        private void alignCenter()
+        {
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
 
         private void Statistic_Click(object sender, RoutedEventArgs e)
