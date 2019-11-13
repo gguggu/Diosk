@@ -41,7 +41,7 @@ namespace Diosk
                 foreach (Food items in payingSeat.lstOrderFood)
                 {
                     foodOrderList.Text += items.Name + " X " + items.Count.ToString() + "\n";
-                    total += items.Price * items.Count;
+                    total += items.Price;
                 }
             }
 

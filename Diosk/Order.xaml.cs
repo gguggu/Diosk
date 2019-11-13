@@ -132,7 +132,6 @@ namespace Diosk
         private void AllCancel_Click(object sender, RoutedEventArgs e)
         {
             orderlist.Items.Clear();
-            App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
 
             resultPrice = 0;
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
@@ -145,7 +144,6 @@ namespace Diosk
             if (orderlist.SelectedItem != null)
             {
                 orderlist.Items.Remove(order);
-                App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Remove(order);
 
                 resultPrice -= order.Price;
                 totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
@@ -172,7 +170,6 @@ namespace Diosk
 
                 order.Count++;
                 order.Price += price;
-
 
                 orderlist.Items.Refresh();
 
@@ -205,7 +202,6 @@ namespace Diosk
                 if (order.Count == 0)
                 {
                     orderlist.Items.Remove(order);
-                    App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Remove(order);
                 }
                 else
                 {
@@ -239,7 +235,7 @@ namespace Diosk
 
             if (lvFood.SelectedItem != null)
             {
-                imagetest.Source = new BitmapImage(new Uri(food.ImagePath, UriKind.RelativeOrAbsolute));
+                foodImage.Source = new BitmapImage(new Uri(food.ImagePath, UriKind.RelativeOrAbsolute));
 
                 bool isExistFood = false;
 
