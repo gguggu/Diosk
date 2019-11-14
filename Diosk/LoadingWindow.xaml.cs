@@ -23,8 +23,6 @@ namespace Diosk
     {
         DispatcherTimer timer = new DispatcherTimer();
 
-        Diosk.Model.Menu menu = new Diosk.Model.Menu();
-
         public LoadingWindow()
         {
             InitializeComponent();
@@ -33,7 +31,7 @@ namespace Diosk
         private void LoadingWindow_Loaded(object sender, RoutedEventArgs e)
         {
             alignCenter();
-            menu.Load();
+            App.menu.Load();
             loadingStart();
         }
         private void alignCenter()
@@ -48,16 +46,12 @@ namespace Diosk
         }
         private void loadingStart()
         {
-            //timer.Interval = new TimeSpan(0, 0, 3); // TimeSpan(Hour, Minute, Second);
             timer.Tick += new EventHandler(timer_Tick);
-
             timer.Start();
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            //fadeOutAnimation(loading);
-            //fadeOutAnimation(Window.GetWindow(this));
-            if(menu.isLoaded)
+            if(App.menu.isLoaded)
             {
                 timer.Stop();
                 loadingClose();
@@ -69,15 +63,5 @@ namespace Diosk
             Window.GetWindow(this).Close();
             main.Show();
         }
-        /*private void fadeOutAnimation(Window target)
-        {
-                DoubleAnimation anim = new DoubleAnimation();
-                double animRunningTime = 1.5f;
-                anim.From = 1.0;
-                anim.To = 0.0;
-                anim.Duration = new Duration(TimeSpan.FromSeconds(animRunningTime));
-
-                target.BeginAnimation(OpacityProperty, anim);
-        }*/
     }
 }

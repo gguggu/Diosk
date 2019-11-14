@@ -29,13 +29,11 @@ namespace Diosk
 
         int seatIdx = 0;
 
-        Diosk.Model.Menu menu = new Diosk.Model.Menu();
         public Order(int id)
         {
             InitializeComponent();
             seatIdSetting(id);
             setAlreayOrderList();
-            //MainWindow+= seatCtrl_OrderEvent;
             this.Loaded += load_Menu;
         }
 
@@ -61,8 +59,7 @@ namespace Diosk
 
         private void load_Menu(object sender, RoutedEventArgs e)
         {
-            menu.Load();
-            lvFood.ItemsSource = menu.All;
+            lvFood.ItemsSource = App.menu.All;
 
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
         }
@@ -111,7 +108,7 @@ namespace Diosk
             string category = btnCategory.Content.ToString().ToUpper();
             bool isAll = false;
 
-            List<Food> lstAllFood = category.Equals("ALL") ? menu.All : null;
+            List<Food> lstAllFood = category.Equals("ALL") ? App.menu.All : null;
             List<Food> lstInsert = new List<Food>();
 
             if (!(lstAllFood == null))
@@ -122,7 +119,7 @@ namespace Diosk
                 foreach (Enum item in Enum.GetValues(typeof(eCategory)))
                 {
                     if (item.ToString().Equals(category))
-                        lstAllFood = menu.All.FindAll(x => x.Category.Equals(item));
+                        lstAllFood = App.menu.All.FindAll(x => x.Category.Equals(item));
                 }
             }
 

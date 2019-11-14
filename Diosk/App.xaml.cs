@@ -15,6 +15,8 @@ namespace Diosk
     public partial class App : Application
     {
         public static SeatDataSource seatDataSource = new SeatDataSource();
+
+        public static Diosk.Model.Menu menu = new Diosk.Model.Menu();
         public App()
         {
             App.seatDataSource.dataLoad();
