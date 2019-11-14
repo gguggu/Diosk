@@ -27,6 +27,7 @@ namespace Diosk
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.Loaded += MainWindow_Loaded;
         }
 
@@ -38,20 +39,8 @@ namespace Diosk
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            alignCenter();
             setSeat();
             timeLoading();
-        }
-
-        private void alignCenter()
-        {
-            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
-            double windowWidth = this.Width;
-            double windowHeight = this.Height;
-
-            this.Left = (screenWidth / 2) - (windowWidth / 2);
-            this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
 
         private void Statistic_Click(object sender, RoutedEventArgs e)

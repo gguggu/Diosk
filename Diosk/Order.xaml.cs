@@ -32,9 +32,11 @@ namespace Diosk
         public Order(int id)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             seatIdSetting(id);
             setAlreayOrderList();
             this.Loaded += load_Menu;
+            
         }
 
         private void setAlreayOrderList()
