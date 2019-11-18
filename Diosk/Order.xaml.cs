@@ -88,20 +88,25 @@ namespace Diosk
 
             time.Text = dateTime.ToString("최근 주문 시간 : " + "h시 mm분 ss초");
 
-            Window payment = null;
-
             updateOrderList();
-            orderInfo.lstOrderFood.Clear();
 
-            foreach (Food food in orderlist.Items)
+            if (orderInfo.lstOrderFood.Count() > 0)
             {
-                orderInfo.lstOrderFood.Add(food);
+                Window payment = null;
+                
+                orderInfo.lstOrderFood.Clear();
+
+                foreach (Food food in orderlist.Items)
+                {
+                    orderInfo.lstOrderFood.Add(food);
+                }
+
+                payment = new PaymentWindow(orderInfo);
+                payment.Show();
+                this.Close();
             }
-
-            payment = new PaymentWindow(orderInfo);
-
-            payment.Show();
-            this.Close();
+            else
+                MessageBox.Show("결제할 음료가 없습니다.","오류");
         }
 
         private void categoryClick(object sender, RoutedEventArgs e)
