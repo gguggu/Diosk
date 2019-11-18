@@ -25,11 +25,13 @@ namespace Diosk
         public PaymentWindow(Seat orderInfo)
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             payingSeat = new Seat();
             payingSeat.id = orderInfo.id;
             payingSeat.lstOrderFood = orderInfo.lstOrderFood;
             setSeat();
         }
+
         private void setSeat()
         {
             int total = 0;
@@ -62,17 +64,59 @@ namespace Diosk
         {
             if (MessageBox.Show("결제하시겠습니까?", "결제 확인", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                TotalData totalData = App.totalData;
+
+                foreach (Food food in payingSeat.lstOrderFood)
+                {
+                    Data data = setData(food);
+
+                    setDataList(totalData, data);
+                    setCategoryList(totalData, data);
+                }
                 MainWindow main = new MainWindow();
-
-                /*
-                 * 통계쪽으로 결제된 음식 정보 보내는 구간 ( 추후에 작성할 예정.. )
-                 */
-
                 App.seatDataSource.lstSeatData[payingSeat.id - 1].lstOrderFood.Clear();
                 main.Refresh();
 
                 this.Close();
                 main.Show();
+            }
+        }
+
+        public Data setData(Food food)
+        {
+            Data data = new Data();
+
+            data.Name = food.Name;
+            data.Price = food.Price;
+            data.Count = food.Count;
+            data.Category = food.Category;
+
+            return data;
+        }
+
+        public void setDataList(TotalData totalData, Data data)
+        {
+            if (totalData.DataList.Find(x => x.Name == data.Name) != null)
+            {
+                totalData.DataList.Find(x => x.Name == data.Name).Count += data.Count;
+                totalData.DataList.Find(x => x.Name == data.Name).Price += data.Price;
+            }
+            else
+            {
+                totalData.DataList.Add(data);
+            }
+        }
+
+        public void setCategoryList(TotalData totalData, Data data)
+        {
+            if (totalData.CategoryList.Find(x => x.Category == data.Category) != null)
+            {
+                totalData.CategoryList.Find(x => x.Category == data.Category).Count += data.Count;
+                totalData.CategoryList.Find(x => x.Category == data.Category).Price += data.Price;
+            }
+            else
+            {
+                totalData.CategoryList.Add(data);
             }
         }
 
