@@ -61,7 +61,7 @@
                         <TextBlock Text="통계"  FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <Grid Width="600" Height="50" Panel.ZIndex="99" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160, 40, 0, 0">
-                        <TextBlock Text="{Binding AllMoneyString}" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#212121"/>
+                        <TextBlock Text="" x:Name="money" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#212121"/>
                     </Grid>
                     <Grid Panel.ZIndex="98">
                         <Grid Width="1400">

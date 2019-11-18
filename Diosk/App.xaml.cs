@@ -17,6 +17,9 @@ namespace Diosk
         public static SeatDataSource seatDataSource = new SeatDataSource();
 
         public static Diosk.Model.Menu menu = new Diosk.Model.Menu();
+
+        public static TotalData totalData = new TotalData();
+
         public App()
         {
             App.seatDataSource.dataLoad();
