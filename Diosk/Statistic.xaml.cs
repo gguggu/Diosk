@@ -54,7 +54,7 @@ namespace Diosk
 
         public void addMenuMoneySlice(PieChart pie, Func<ChartPoint, string> labelPoint)
         {
-            foreach(var data in totalData.DataList)
+            foreach(var data in totalData.MenuList)
             {
                 pie.Series.Add(new PieSeries
                 {
@@ -68,7 +68,7 @@ namespace Diosk
 
         public void addMenuCountSlice(PieChart pie, Func<ChartPoint, string> labelPoint)
         {
-            foreach (var data in totalData.DataList)
+            foreach (var data in totalData.MenuList)
             {
                 pie.Series.Add(new PieSeries
                 {
@@ -77,6 +77,8 @@ namespace Diosk
                     DataLabels = true,
                     LabelPoint = labelPoint
                 });
+                Console.WriteLine("menu count: " + data.Name + data.Count);
+                Console.WriteLine("menu price: " + data.Name + data.Price);
             }
         }
         public void addCategoryMoneySlice(PieChart pie, Func<ChartPoint, string> labelPoint)
@@ -109,9 +111,22 @@ namespace Diosk
 
         public void setMoney()
         {
-            totalData.LoadMoney();
-
             money.Text = "Total: " + totalData.AllMoney.ToString() + "원";
+        }
+
+        private void SendTotalMoney(object sender, RoutedEventArgs e)
+        {
+            Chatting chatting = App.chatting;
+
+            if (chatting.isLogin)
+            {
+                string message = "@2104#하루총액 " + totalData.AllMoney.ToString() + "원";
+                chatting.Send(message);
+            } else
+            {
+                MessageBox.Show("로그인부터 하세용");
+            }
+           
         }
     }
 }
