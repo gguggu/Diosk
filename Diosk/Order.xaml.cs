@@ -23,6 +23,8 @@ namespace Diosk
     {
         Seat orderInfo = new Seat();
 
+        DateTime dateTime;
+
         int resultPrice = 0;
 
         int price = 0;
@@ -71,7 +73,7 @@ namespace Diosk
         }
         private void updateOrderList()
         {
-            int seatIdx = orderInfo.id - 1;
+            seatIdx = orderInfo.id - 1;
 
             App.seatDataSource.lstSeatData[seatIdx].lstOrderFood.Clear();
             App.seatDataSource.lstSeatData[seatIdx].lstOrderTime.Add(time.Text);
@@ -139,50 +141,54 @@ namespace Diosk
 
         private void AllCancel_Click(object sender, RoutedEventArgs e)
         {
-            orderlist.Items.Clear();
+            if (orderlist.Items.IsEmpty)
+            {
+                MessageBox.Show("취소할 음료가 없습니다.", "오류");
+            }
+            else
+            {
+                orderlist.Items.Clear();
 
-            DateTime dateTime = DateTime.Now;
-
-            resultPrice = 0;
-            totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-            time.Text = dateTime.ToString("최근 주문 시간 : " + "HH시 mm분 ss초");
+                resultPrice = 0;
+                setResult(resultPrice);
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Food order = (orderlist.SelectedItem as Food);
 
-            DateTime dateTime = DateTime.Now;
-
             if (orderlist.SelectedItem != null)
             {
                 orderlist.Items.Remove(order);
 
                 resultPrice -= order.Price;
-                totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-                time.Text = dateTime.ToString("최근 주문 시간 : " + "HH시 mm분 ss초");
+                setResult(resultPrice);
             }
+        }
+
+        private void price_Check(Food order)
+        {
+            if (order.Price == 3000 * order.Count)
+                price = 3000;
+
+            else if (order.Price == 3500 * order.Count)
+                price = 3500;
+
+            else if (order.Price == 4000 * order.Count)
+                price = 4000;
+
+            else if (order.Price == 4500 * order.Count)
+                price = 4500;
         }
 
         private void Plus_Click(object sender, RoutedEventArgs e)
         {
             Food order = (orderlist.SelectedItem as Food);
 
-            DateTime dateTime = DateTime.Now;
-
             if (orderlist.SelectedItem != null)
             {
-                if (order.Price == 3000 * order.Count)
-                    price = 3000;
-
-                else if (order.Price == 3500 * order.Count)
-                    price = 3500;
-
-                else if (order.Price == 4000 * order.Count)
-                    price = 4000;
-
-                else if (order.Price == 4500 * order.Count)
-                    price = 4500;
+                price_Check(order);
 
                 order.Count++;
                 order.Price += price;
@@ -190,30 +196,24 @@ namespace Diosk
                 orderlist.Items.Refresh();
 
                 resultPrice += price;
-                totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-                time.Text = dateTime.ToString("최근 주문 시간 : " + "HH시 mm분 ss초");
+                setResult(resultPrice);
             }
+        }
+
+        private void setResult(int resultPrice)
+        {
+            dateTime = DateTime.Now;
+            totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
+            time.Text = dateTime.ToString("최근 주문 시간 : " + "HH시 mm분 ss초");
         }
 
         private void Minus_Click(object sender, RoutedEventArgs e)
         {
             Food order = (orderlist.SelectedItem as Food);
 
-            DateTime dateTime = DateTime.Now;
-
             if (orderlist.SelectedItem != null)
             {
-                if (order.Price == 3000 * order.Count)
-                    price = 3000;
-
-                else if (order.Price == 3500 * order.Count)
-                    price = 3500;
-
-                else if (order.Price == 4000 * order.Count)
-                    price = 4000;
-
-                else if (order.Price == 4500 * order.Count)
-                    price = 4500;
+                price_Check(order);
 
                 order.Count--;
                 order.Price -= price;
@@ -228,8 +228,7 @@ namespace Diosk
                 }
 
                 resultPrice -= price;
-                totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-                time.Text = dateTime.ToString("최근 주문 시간 : " + "HH시 mm분 ss초");
+                setResult(resultPrice);
             }
         }
 
@@ -243,7 +242,7 @@ namespace Diosk
             this.Close();
             statis.Show();
         }
-
+        
         private void LvFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvFood.SelectedIndex == -1)
@@ -255,8 +254,6 @@ namespace Diosk
 
             if (lvFood.SelectedItem != null)
             {
-                DateTime dateTime = DateTime.Now;
-
                 foodImage.Source = new BitmapImage(new Uri(food.ImagePath, UriKind.RelativeOrAbsolute));
 
                 bool isExistFood = false;
@@ -280,9 +277,7 @@ namespace Diosk
                 orderlist.Items.Refresh();
 
                 resultPrice += food.Price;
-
-                totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-                time.Text = dateTime.ToString("최근 주문 시간 : " + "HH시 mm분 ss초");
+                setResult(resultPrice);
 
                 lvFood.SelectedIndex = -1;
             }
