@@ -21,13 +21,19 @@ namespace Diosk
     /// </summary>
     public partial class Order : Window
     {
+        const int RESET_PRICE = 0;
+        const int PRICE_3000 = 3000;
+        const int PRICE_3500 = 3500;
+        const int PRICE_4000 = 4000;
+        const int PRICE_4500 = 4500;
+
         Seat orderInfo = new Seat();
 
-        DateTime dateTime;
+        DateTime orderTime;
 
         int resultPrice = 0;
 
-        int price = 0;
+        int foodPrice = 0;
 
         int seatIdx = 0;
 
@@ -169,17 +175,17 @@ namespace Diosk
 
         private void price_Check(Food order)
         {
-            if (order.Price == 3000 * order.Count)
-                price = 3000;
+            if (order.Price == PRICE_3000 * order.Count)
+                foodPrice = PRICE_3000;
 
-            else if (order.Price == 3500 * order.Count)
-                price = 3500;
+            else if (order.Price == PRICE_3500 * order.Count)
+                foodPrice = PRICE_3500;
 
-            else if (order.Price == 4000 * order.Count)
-                price = 4000;
+            else if (order.Price == PRICE_4000 * order.Count)
+                foodPrice = PRICE_4000;
 
-            else if (order.Price == 4500 * order.Count)
-                price = 4500;
+            else if (order.Price == PRICE_4500 * order.Count)
+                foodPrice = PRICE_4500;
         }
 
         private void Plus_Click(object sender, RoutedEventArgs e)
@@ -191,20 +197,20 @@ namespace Diosk
                 price_Check(order);
 
                 order.Count++;
-                order.Price += price;
+                order.Price += foodPrice;
 
                 orderlist.Items.Refresh();
 
-                resultPrice += price;
+                resultPrice += foodPrice;
                 setResult(resultPrice);
             }
         }
 
         private void setResult(int resultPrice)
         {
-            dateTime = DateTime.Now;
+            orderTime = DateTime.Now;
             totalPrice.Text = "전체 금액 : " + resultPrice.ToString() + "원";
-            time.Text = dateTime.ToString("최근 주문 시간 : " + "HH시 mm분 ss초");
+            time.Text = orderTime.ToString("최근 주문 시간 : " + "HH시 mm분 ss초");
         }
 
         private void Minus_Click(object sender, RoutedEventArgs e)
@@ -216,7 +222,7 @@ namespace Diosk
                 price_Check(order);
 
                 order.Count--;
-                order.Price -= price;
+                order.Price -= foodPrice;
 
                 if (order.Count == 0)
                 {
@@ -227,7 +233,7 @@ namespace Diosk
                     orderlist.Items.Refresh();
                 }
 
-                resultPrice -= price;
+                resultPrice -= foodPrice;
                 setResult(resultPrice);
             }
         }
