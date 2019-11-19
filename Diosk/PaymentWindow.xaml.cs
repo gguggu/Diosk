@@ -75,6 +75,7 @@ namespace Diosk
                 }
                 MainWindow main = new MainWindow();
                 App.seatDataSource.lstSeatData[payingSeat.id - 1].lstOrderFood.Clear();
+                App.seatDataSource.lstSeatData[payingSeat.id - 1].lstOrderTime.Clear();
                 main.Refresh();
 
                 this.Close();
