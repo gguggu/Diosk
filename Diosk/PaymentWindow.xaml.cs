@@ -65,14 +65,21 @@ namespace Diosk
             if (MessageBox.Show("결제하시겠습니까?", "결제 확인", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 TotalData totalData = App.totalData;
+                Chatting chatting = App.chatting;
 
                 foreach (Food food in payingSeat.lstOrderFood)
                 {
-                    Data data = setData(food);
-
-                    setDataList(totalData, data);
-                    setCategoryList(totalData, data);
+                    setMenuList(totalData, food);
+                    setCategoryList(totalData, food);
+                    setTotalMoney(totalData, food);
                 }
+
+                string sendingMoney = "@2104#총액 " + totalData.paymentMoney.ToString() + "원";
+
+                chatting.Send(sendingMoney);
+
+                totalData.paymentMoney = 0;
+
                 MainWindow main = new MainWindow();
                 App.seatDataSource.lstSeatData[payingSeat.id - 1].lstOrderFood.Clear();
                 main.Refresh();
@@ -82,41 +89,37 @@ namespace Diosk
             }
         }
 
-        public Data setData(Food food)
+        public void setTotalMoney(TotalData totalData, Food food)
         {
-            Data data = new Data();
-
-            data.Name = food.Name;
-            data.Price = food.Price;
-            data.Count = food.Count;
-            data.Category = food.Category;
-
-            return data;
+            totalData.AllMoney += food.Price;
+            totalData.paymentMoney += food.Price;
         }
 
-        public void setDataList(TotalData totalData, Data data)
+        public void setMenuList(TotalData totalData, Food food)
         {
-            if (totalData.DataList.Find(x => x.Name == data.Name) != null)
+            if (totalData.MenuList.Find(item => item.Name == food.Name) != null)
             {
-                totalData.DataList.Find(x => x.Name == data.Name).Count += data.Count;
-                totalData.DataList.Find(x => x.Name == data.Name).Price += data.Price;
+                totalData.MenuList.Find(item => item.Name == food.Name).Count += food.Count;
+                totalData.MenuList.Find(item => item.Name == food.Name).Price += food.Price;
             }
             else
             {
-                totalData.DataList.Add(data);
+                totalData.MenuList.Add(food);
             }
+            Console.WriteLine("menu count " + totalData.MenuList.Find(item => item.Name == food.Name).Count);
+            Console.WriteLine("menu count " + totalData.MenuList.Find(item => item.Name == food.Name).Price);
         }
 
-        public void setCategoryList(TotalData totalData, Data data)
+        public void setCategoryList(TotalData totalData, Food food)
         {
-            if (totalData.CategoryList.Find(x => x.Category == data.Category) != null)
+            if (totalData.CategoryList.Find(item => item.Category == food.Category) != null)
             {
-                totalData.CategoryList.Find(x => x.Category == data.Category).Count += data.Count;
-                totalData.CategoryList.Find(x => x.Category == data.Category).Price += data.Price;
+                totalData.CategoryList.Find(item => item.Category == food.Category).Count += food.Count;
+                totalData.CategoryList.Find(item => item.Category == food.Category).Price += food.Price;
             }
             else
             {
-                totalData.CategoryList.Add(data);
+                totalData.CategoryList.Add(food);
             }
         }
 

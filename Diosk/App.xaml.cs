@@ -16,9 +16,11 @@ namespace Diosk
     {
         public static SeatDataSource seatDataSource = new SeatDataSource();
 
-        public static Diosk.Model.Menu menu = new Diosk.Model.Menu();
+        public static Menu menu = new Menu();
 
         public static TotalData totalData = new TotalData();
+
+        public static Chatting chatting = new Chatting();
 
         public App()
         {

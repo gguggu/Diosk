@@ -28,6 +28,7 @@ namespace Diosk
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            setLogTimes();
             this.Loaded += MainWindow_Loaded;
         }
 
@@ -99,25 +100,56 @@ namespace Diosk
 
         private void Order_Click(object sender, RoutedEventArgs e)
         {
-            Window orderPage = null;
+            Chatting chatting = App.chatting;
 
-            var seatControl = (sender as ListViewItem).Content as SeatControl;
-            int id = int.Parse(seatControl.id.Text);
+            if (!chatting.isLogin)
+            {
+                MessageBox.Show("로그인부터 하세용");
+            } else
+            {
+                Window orderPage = null;
 
-            orderPage = new Order(id);
+                var seatControl = (sender as ListViewItem).Content as SeatControl;
+                int id = int.Parse(seatControl.id.Text);
 
-            Window.GetWindow(this).Close();
-            orderPage.Show();
+                orderPage = new Order(id);
+
+                Window.GetWindow(this).Close();
+                orderPage.Show();
+            }
         }
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
-            //Window loginPage = null;
+            Chatting chatting = App.chatting;
 
-            //loginPage = new ChatService();
+            if (chatting.isLogin)
+            {
+                MessageBox.Show("이미 로그인 되어 있습니다.");
+            } else
+            {
+                chatting.Create();
 
-            //loginPage.Show();
-            Window.GetWindow(this).Close();
+                setLogTimes();
+            }
+        }
+
+        public void setLogTimes()
+        {
+            Chatting chatting = App.chatting;
+
+            if (chatting.isLogin)
+                logTime.Text = "최근 로그인 시간: " + chatting.loginDate;
+            else
+                logTime.Text = "최근 로그아웃 시간: " + chatting.logoutDate;
+        }
+
+        private void LogoutClick(object sender, RoutedEventArgs e)
+        {
+            Chatting chatting = App.chatting;
+
+            chatting.Close();
+            setLogTimes();
         }
     }
 }

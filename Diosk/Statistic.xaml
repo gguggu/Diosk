@@ -63,6 +63,9 @@
                     <Grid Width="600" Height="50" Panel.ZIndex="99" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160, 40, 0, 0">
                         <TextBlock Text="" x:Name="money" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#212121"/>
                     </Grid>
+                    <Button Width="150" Height="50" Click="SendTotalMoney" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50, 100, 0, 0">
+                        <TextBlock Text="서버로 하루총액 보내기"/>
+                    </Button>
                     <Grid Panel.ZIndex="98">
                         <Grid Width="1400">
                             <Grid.ColumnDefinitions>
