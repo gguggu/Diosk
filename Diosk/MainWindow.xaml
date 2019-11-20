@@ -39,7 +39,7 @@
             <Canvas>
                 <WrapPanel>
                     <TextBlock x:Name="timer" Canvas.Top="15" Canvas.Left="25"
-                           FontSize="15" Foreground="White"/> <!-- Canvas.Right="25" !-->
+                           FontSize="15" Foreground="White"/>
                     <TextBlock Text="" x:Name="logTime" Foreground="White" Margin="50, 0, 50, 0"/>
                 </WrapPanel>
             </Canvas>

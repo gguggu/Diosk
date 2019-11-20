@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Diosk"
         mc:Ignorable="d"
         Title="LoadingWindow" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True">
-    <Grid><!--x:Name="loading"-->
+    <Grid>
         <Image  Source="Assets/loading.png" Stretch="Fill"/>
     </Grid>
 </Window>
