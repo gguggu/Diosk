@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diosk"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized">
     <Grid>
         <local:Statistic x:Name="navi" Visibility="Collapsed"/>
         <Button Width="50" Height="50" Background="Gold" Panel.ZIndex="100" Click="Statistic_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 20, 20, 0">
