@@ -103,6 +103,12 @@ namespace Diosk.Model
             {
                 MessageBox.Show("ERROR");
             }
+            catch (NullReferenceException)
+            {
+            }
+            catch (ObjectDisposedException)
+            {
+            }
         }
 
         public void Send(string msg)

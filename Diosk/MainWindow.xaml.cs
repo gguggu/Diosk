@@ -30,6 +30,7 @@ namespace Diosk
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            setLogTimes();
             App.chatting.hl += new handleLogin(setLogTimes);
             this.Loaded += MainWindow_Loaded;
         }
