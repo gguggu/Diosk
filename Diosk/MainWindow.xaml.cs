@@ -21,6 +21,8 @@ namespace Diosk
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
+    /// 
+
     public partial class MainWindow : Window
     {
         public string navName = "통계";
@@ -28,7 +30,7 @@ namespace Diosk
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            setLogTimes();
+            App.chatting.hl += new handleLogin(setLogTimes);
             this.Loaded += MainWindow_Loaded;
         }
 
@@ -129,8 +131,6 @@ namespace Diosk
             } else
             {
                 chatting.Create();
-
-                setLogTimes();
             }
         }
 
@@ -138,10 +138,13 @@ namespace Diosk
         {
             Chatting chatting = App.chatting;
 
-            if (chatting.isLogin)
-                logTime.Text = "최근 로그인 시간: " + chatting.loginDate;
-            else
-                logTime.Text = "최근 로그아웃 시간: " + chatting.logoutDate;
+            App.Current.Dispatcher.Invoke(() => 
+            {
+                if (chatting.isLogin)
+                    logTime.Text = "최근 로그인 시간: " + chatting.loginDate;
+                else
+                    logTime.Text = "최근 로그아웃 시간: " + chatting.logoutDate;
+            });
         }
 
         private void LogoutClick(object sender, RoutedEventArgs e)
@@ -149,7 +152,6 @@ namespace Diosk
             Chatting chatting = App.chatting;
 
             chatting.Close();
-            setLogTimes();
         }
     }
 }

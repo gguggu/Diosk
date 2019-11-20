@@ -10,13 +10,14 @@ using System.Windows;
 
 namespace Diosk.Model
 {
+    public delegate void handleLogin();
     public class Chatting
     {
-
         public Socket socket;
         public bool isLogin = false;
         public string loginDate = string.Empty;
         public string logoutDate = string.Empty;
+        public event handleLogin hl;
 
         public void Create()
         {
@@ -29,12 +30,16 @@ namespace Diosk.Model
         {
             try
             {
-                var ipEndPoint = new IPEndPoint(IPAddress.Parse("10.80.162.116"), 5000); // 접속
+                var ipEndPoint = new IPEndPoint(IPAddress.Parse("10.80.162.108"), 8000); // 접속
                 socket.BeginConnect(ipEndPoint, ConnectCallback, socket);
             }
             catch (SocketException)
             {
                 MessageBox.Show("접속 실패");
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("로그인 중 입니다.");
             }
         }
 
@@ -50,13 +55,14 @@ namespace Diosk.Model
                 Receive(loginMsg);
 
                 loginDate = DateTime.Now.ToString();
+                isLogin = true;
+                hl();
 
                 MessageBox.Show("로그인 되었습니다.");
-
-                isLogin = true;
             } catch (SocketException)
             {
                 MessageBox.Show("로그인에서 오류가 발생했습니다!");
+                isLogin = false;
             }
         }
 
@@ -67,6 +73,7 @@ namespace Diosk.Model
                 socket.EndConnect(ar);
                 if (!isLogin)
                     Login();
+                
             }
             catch (SocketException)
             {
@@ -143,6 +150,7 @@ namespace Diosk.Model
 
                     logoutDate = DateTime.Now.ToString();
                     isLogin = false;
+                    hl();
 
                     MessageBox.Show("소켓 연결을 끊었습니다.");
                 }
