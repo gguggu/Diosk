@@ -37,9 +37,6 @@
             <Setter Property="BorderBrush" Value="#FFEA00"/>
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="40"/>
-            <!--<Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Margin" Value="0,5,5,0"/>-->
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,20,0"/>
@@ -65,10 +62,6 @@
             </StackPanel>
 
             <Grid Grid.Column="1">
-                <!--<TextBlock Text="결제 방식" Style="{StaticResource TextStyle}" FontSize="15" FontWeight="Medium" 
-                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,5,0,0"/>-->
-                <!--<TextBlock x:Name="payment" Style="{StaticResource TextStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="52,24,0,0" FontSize="25"/>-->
-                <!--<ToggleButton Content="변경" Style="{StaticResource ToggleButtonStyle}" IsChecked="False" Click="PaymentChange_Click"/>-->
                 <TextBlock Text="결제 방식" Style="{StaticResource TextStyle}"
                            HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0"/>
                 <ToggleButton x:Name="payment" Content="현금" Style="{StaticResource ToggleButtonStyle}" IsChecked="False" Click="PaymentChange_Click"/>
