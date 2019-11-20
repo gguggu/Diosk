@@ -39,24 +39,17 @@ namespace Diosk
             Func<ChartPoint, string> labelPoint = chartPoint =>
             string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 
-            foreach(var pie in pies)
-            {
-                if (pie == MenuCountPie)
-                    addMenuCountSlice(pie, labelPoint);
-                else if (pie == MenuMoneyPie)
-                    addMenuMoneySlice(pie, labelPoint);
-                else if (pie == CategoryCountPie)
-                    addCategoryCountSlice(pie, labelPoint);
-                else if (pie == CategoryMoneyPie)
-                    addCategoryMoneySlice(pie, labelPoint);
-            }
+            addMenuMoneySlice(labelPoint);
+            addMenuCountSlice(labelPoint);
+            addCategoryMoneySlice(labelPoint);
+            addCategoryCountSlice(labelPoint);
         }
 
-        public void addMenuMoneySlice(PieChart pie, Func<ChartPoint, string> labelPoint)
+        public void addMenuMoneySlice(Func<ChartPoint, string> labelPoint)
         {
-            foreach(var data in totalData.MenuList)
+            foreach (var data in totalData.MenuList)
             {
-                pie.Series.Add(new PieSeries
+                MenuMoneyPie.Series.Add(new PieSeries
                 {
                     Title = data.Name,
                     Values = new ChartValues<double> { data.Price },
@@ -66,11 +59,11 @@ namespace Diosk
             }
         }
 
-        public void addMenuCountSlice(PieChart pie, Func<ChartPoint, string> labelPoint)
+        public void addMenuCountSlice(Func<ChartPoint, string> labelPoint)
         {
             foreach (var data in totalData.MenuList)
             {
-                pie.Series.Add(new PieSeries
+                MenuCountPie.Series.Add(new PieSeries
                 {
                     Title = data.Name,
                     Values = new ChartValues<double> { data.Count },
@@ -81,11 +74,11 @@ namespace Diosk
                 Console.WriteLine("menu price: " + data.Name + data.Price);
             }
         }
-        public void addCategoryMoneySlice(PieChart pie, Func<ChartPoint, string> labelPoint)
+        public void addCategoryMoneySlice(Func<ChartPoint, string> labelPoint)
         {
             foreach (var data in totalData.CategoryList)
             {
-                pie.Series.Add(new PieSeries
+                CategoryMoneyPie.Series.Add(new PieSeries
                 {
                     Title = data.Category.ToString(),
                     Values = new ChartValues<double> { data.Price },
@@ -95,11 +88,11 @@ namespace Diosk
             }
         }
 
-        public void addCategoryCountSlice(PieChart pie, Func<ChartPoint, string> labelPoint)
+        public void addCategoryCountSlice(Func<ChartPoint, string> labelPoint)
         {
             foreach (var data in totalData.CategoryList)
             {
-                pie.Series.Add(new PieSeries
+                CategoryCountPie.Series.Add(new PieSeries
                 {
                     Title = data.Category.ToString(),
                     Values = new ChartValues<double> { data.Count },

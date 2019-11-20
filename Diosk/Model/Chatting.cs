@@ -10,14 +10,14 @@ using System.Windows;
 
 namespace Diosk.Model
 {
-    public delegate void handleLogin();
+    public delegate void HandleLogin();
     public class Chatting
     {
         public Socket socket;
         public bool isLogin = false;
         public string loginDate = string.Empty;
         public string logoutDate = string.Empty;
-        public event handleLogin hl;
+        public event HandleLogin handleLogin;
 
         public void Create()
         {
@@ -56,7 +56,7 @@ namespace Diosk.Model
 
                 loginDate = DateTime.Now.ToString();
                 isLogin = true;
-                hl();
+                handleLogin();
 
                 MessageBox.Show("로그인 되었습니다.");
             } catch (SocketException)
@@ -156,7 +156,7 @@ namespace Diosk.Model
 
                     logoutDate = DateTime.Now.ToString();
                     isLogin = false;
-                    hl();
+                    handleLogin();
 
                     MessageBox.Show("소켓 연결을 끊었습니다.");
                 }
